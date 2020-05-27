@@ -10,13 +10,11 @@
   --font-size-comp: 18px;
   --font-size-input: 16px;
 }
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
 body {
   font-family: 'Lekton', 'Trebuchet MS', sans-serif;
   font-weight: bold;
@@ -29,30 +27,21 @@ body {
   #ffffff 57.14%, #ffffff 100%);
   background-size: 10px 10px;
 }
-
 .material-icons.md-size {
   font-size: 32px;
   text-rendering: optimizeLegibility;
 }
-
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-thumb {
   background-color: #BEBEBE;
   border: 2px solid transparent;
   background-clip: content-box;
 }
-
 /* IMPORTANT for target */
 button > *, a > * { pointer-events: none; }
-
 button:focus { outline: none; }
-
-a:link, a:visited, a:active {
-  text-decoration: none;
-}
-
+a:link, a:visited, a:active { text-decoration: none; }
 input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
-
 .header > * span, .header > * i, .menu > * span, .menu > * i {
   display: block;
   position: relative;
@@ -175,7 +164,7 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
 }
 
 
-/* --------------------- Section / All Comp --------------------- */
+/* --------------------- Comp Commons --------------------- */
 .comp {
   position: relative;
   height: calc(100% - var(--header-height));
@@ -327,7 +316,6 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
 .delete-button:hover {
   background-color: crimson;
 }
-
 
 
 /* --------------------- Steps Comp --------------------- */
