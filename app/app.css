@@ -39,9 +39,13 @@ body {
 }
 /* IMPORTANT for target */
 button > *, a > * { pointer-events: none; }
+
 button:focus { outline: none; }
+
 a:link, a:visited, a:active { text-decoration: none; }
+
 input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
+
 .header > * span, .header > * i, .menu > * span, .menu > * i {
   display: block;
   position: relative;
