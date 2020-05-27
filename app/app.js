@@ -230,41 +230,33 @@ const textController = (() => {
   
 
   const addDrift = (inp) => {
+    const dirObj = deconstructor(inp);
 
-    if (inp) {
-      const dirObj = deconstructor(inp);
-
-      if (!!Object.values(dirObj).every(item => item)) {
-
-        // ID
-        let ID;
-        data.drifts.length == 0 ? ID = 0 : ID = data.drifts[data.drifts.length - 1].id + 1;
-        // DATE
-        const ts = new Date();
-        let date = ts.toLocaleString();
-        // DEST
-        let dest = dirObj.destination;
-        // ORIGINAL STEPS
-        let sourceSteps = dirObj.orgDirs.dirStr;
-        // NEW STEPS
-        let lostSteps = dirObj.newDirs.dirStr;
-        // QUESTIONS
-        let questions = dirObj.questions;
-        // RECORDINGS
-        let recordings = [];
-        recordings.length = dirObj.newDirs.dirArr.length;
-    
-        const newDrift = new Drift(ID, date, dest, sourceSteps, lostSteps, questions, recordings);
-        data.drifts.push(newDrift);
-        return newDrift
-
-      } else {
-        alert("Wrong direction text format \nCheck the instructions please 🙄");
-        // return null
-      }
+    if (!!Object.values(dirObj).every(item => item)) {
+      // ID
+      let ID;
+      data.drifts.length == 0 ? ID = 0 : ID = data.drifts[data.drifts.length - 1].id + 1;
+      // DATE
+      const ts = new Date();
+      let date = ts.toLocaleString();
+      // DEST
+      let dest = dirObj.destination;
+      // ORIGINAL STEPS
+      let sourceSteps = dirObj.orgDirs.dirStr;
+      // NEW STEPS
+      let lostSteps = dirObj.newDirs.dirStr;
+      // QUESTIONS
+      let questions = dirObj.questions;
+      // RECORDINGS
+      let recordings = [];
+      recordings.length = dirObj.newDirs.dirArr.length;
+  
+      const newDrift = new Drift(ID, date, dest, sourceSteps, lostSteps, questions, recordings);
+      data.drifts.push(newDrift);
+      return newDrift
+      
     } else {
-      alert("Paste the shared Maps directions first 😉");
-      // return null
+      alert("Wrong direction text format \nCheck the instructions please 🙄");
     }
   }
 
@@ -585,7 +577,7 @@ const appController = ((textC, uiC) => {
 
     let html = `
       <textarea class="textarea" type="text" value="none" placeholder="paste directions text here..."></textarea>
-      <button class="button txt lost-button" route="/driftpreview"> Get Lost </button>
+      <button class="button txt lost-button" disabled route="/driftpreview"> Get Lost </button>
     `;
     DOM.section.innerHTML = html;
     // document.querySelector('.textarea').focus();
@@ -593,12 +585,21 @@ const appController = ((textC, uiC) => {
     // LISTENERS
     const textInput = document.querySelector('.textarea');
     const lostBtn = document.querySelector('.lost-button');
+
+    // INPUT
     textInput.focus();
+    textInput.addEventListener('keyup', () => textInput.value != '' ? lostBtn.disabled = false : lostBtn.disabled = true);
 
     // LOST-BUTTON
     lostBtn.addEventListener('click', () => {
       let newDrift = addNewDrift(textInput.value);
-      newDrift ? getPreview(newDrift) : textInput.value = "";
+      if (newDrift) {
+        getPreview(newDrift);
+      } else {
+        textInput.value = '';
+        // textInput.focus();
+        lostBtn.disabled = true;
+      }
     });
 
   }
