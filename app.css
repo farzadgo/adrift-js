@@ -1,0 +1,413 @@
+@import url('https://fonts.googleapis.com/css2?family=Lekton:wght@400;700&display=swap');
+
+:root {
+  --header-height: 80px;
+  --padding-one: 20px;
+  --add-btn-size: 90px;
+  --btn-height: 80px;
+  --btn-font-size: 24px;
+  --font-size-menu: 24px;
+  --font-size-comp: 18px;
+  --font-size-input: 16px;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Lekton', 'Trebuchet MS', sans-serif;
+  font-weight: bold;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  background-image: linear-gradient(
+  135deg, #c2c2c2 7.14%,
+  #ffffff 7.14%, #ffffff 50%, 
+  #c2c2c2 50%, #c2c2c2 57.14%,
+  #ffffff 57.14%, #ffffff 100%);
+  background-size: 10px 10px;
+}
+.material-icons.md-size {
+  font-size: 32px;
+  text-rendering: optimizeLegibility;
+}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-thumb {
+  background-color: #BEBEBE;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+/* IMPORTANT for target */
+button > *, a > * { pointer-events: none; }
+
+button:focus { outline: none; }
+
+a:link, a:visited, a:active { text-decoration: none; }
+
+input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
+
+.header > * span, .header > * i, .menu > * span, .menu > * i {
+  display: block;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+/* --------------------- Container --------------------- */
+.container {
+  position: relative;
+  background-color: white;
+  height: calc(100vh - 100px);
+  width: 500px;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-sizing: content-box;
+  border: 5px solid white;
+  outline: 2px solid black;
+}
+.loader {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 99;
+}
+.loader img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: 0 0;
+  transform: scale(0.4) translate(-50%, -50%);
+}
+.loader.hidden {
+  animation: fadeOut 1.5s;
+  animation-fill-mode: forwards;
+}
+@keyframes fadeOut {
+  80% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+
+/* --------------------- Menu Component --------------------- */
+.menu {
+  /* display: none; */
+  position: fixed;
+  width: 100%;
+  height: calc(100% - var(--header-height));
+  top: var(--header-height);
+  z-index: 2;
+  font-size: var(--font-size-menu);
+  background-color: black;
+  opacity: 0;
+  visibility: hidden;
+}
+.menu-item {
+  display: block;
+  cursor: pointer;
+  padding: 0 20px;
+  height: 0;
+  opacity: 0;
+  visibility: hidden;
+  color: white;
+}
+.menu-icon {
+  text-align: center;
+  min-width: var(--header-height);
+  float: right;
+}
+.menu-item:hover {
+  color: black;
+  background-color: white;
+}
+.menu.is-visible {
+  /* display: block; */
+  opacity: 1.0;
+  visibility: visible;
+}
+
+
+/* --------------------- Header Component --------------------- */
+.header {
+  position: relative;
+  height: var(--header-height);
+  z-index: 1;
+}
+.header-button {
+  height: 100%;
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+  min-width: var(--header-height);
+  padding: 0 var(--padding-one);
+}
+.header-left {
+  float: left;
+  font-size: var(--font-size-menu);
+}
+.header-right {
+  float: right;
+}
+.header-button.inverted {
+  color: white;
+}
+.header-button.inverted:hover {
+  color: white;
+  background-color: crimson;
+}
+.header-left.no-hover {
+  pointer-events: none;
+}
+
+
+/* --------------------- Comp Commons --------------------- */
+.comp {
+  position: relative;
+  height: calc(100% - var(--header-height));
+  padding: var(--padding-one);
+  padding-top: 0;
+}
+.button {
+  position: relative;
+  cursor: pointer;
+  z-index: 1;
+  height: var(--btn-height);
+  border: 2px solid black;
+  color: black;
+  background-color: white;
+}
+.button.txt {
+  font-family: inherit;
+  font-size: var(--btn-font-size);
+  font-weight: bold;
+}
+.button:hover {
+  border: 0;
+  color: white;
+  background-color: black;
+}
+.button[disabled] {
+  pointer-events: none;
+  border: 0;
+  color: #9c9c9c;
+  background: #f0f0f0;
+}
+
+/* --------------------- List Comp --------------------- */
+.list-comp {
+  overflow-y: auto;
+}
+.list-message {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.list-item {
+  position: relative;
+  margin-bottom: 30px;
+  border: 2px solid black;
+  padding: 15px;
+  box-shadow: 5px 5px 0 black;
+  cursor: pointer;
+}
+.list-item p, .list-message p {
+  font-size: var(--font-size-comp);
+  line-height: 1.6em;
+}
+.item-title {
+  color: tomato;
+}
+.add-button {
+  position: fixed;
+  bottom: 90px;
+  right: 40px;
+  height: var(--add-btn-size);
+  width: var(--add-btn-size);
+  border-radius: calc(var(--add-btn-size) * 0.5);
+}
+
+
+/* --------------------- New Drift Comp --------------------- */
+.textarea {
+  display: block;
+  position: relative;
+  height: calc(100% - var(--btn-height) - var(--padding-one));
+  width: 100%;
+  margin-bottom: var(--padding-one);
+  border: 1px solid #BEBEBE;
+  padding: 10px;
+  resize: none;
+  overflow-y: auto;
+  font-size: var(--font-size-input);
+  font-weight: normal;
+  font-family: 'Consolas', monospace;
+  line-height: 1.4em;
+}
+.textarea:focus {
+  outline: none;
+  border: 1px solid crimson;
+}
+.lost-button {
+  width: 100%;
+}
+
+
+/* --------------------- Preview Comp --------------------- */
+.preview {
+  display: block;
+  position: relative;
+  height: calc(100% - var(--btn-height) - var(--padding-one));
+  margin-bottom: var(--padding-one);
+  overflow-y: auto;
+  font-size: var(--font-size-comp);
+}
+.preview-item {
+  margin-bottom: var(--padding-one);
+}
+.preview-item.list {
+  list-style: none;
+  font-size: 0.9em;
+  font-weight: normal;
+  font-family: 'Consolas', monospace;
+}
+.preview-item.left {
+  width: 45%;
+  float: left;
+  color: crimson;
+}
+.preview-item.boxes {
+  float: left;
+  width: 10%;
+}
+.preview-item.right {
+  width: 45%;
+  float: right;
+}
+
+.preview-list-item {
+  height: 36px;
+  line-height: 1.6em;
+}
+.preview-list-item.box {
+  text-align: center;
+}
+.preview-list-item a {
+  color: inherit;
+}
+.preview-list-item i {
+  display: block;
+  font-size: 24px;
+}
+
+.start-button {
+  width: calc(100% -  var(--btn-height) - var(--padding-one));
+  float: right;
+}
+.delete-button {
+  width: var(--btn-height);
+  float: left;
+}
+.delete-button:hover {
+  background-color: crimson;
+}
+
+
+/* --------------------- Steps Comp --------------------- */
+.steps {
+  display: block;
+  position: relative;
+  height: calc(100% - var(--btn-height) - var(--padding-one));
+  margin-bottom: var(--padding-one);
+  overflow-y: auto;
+  font-size: var(--font-size-comp);
+}
+.step-item {
+  margin-bottom: var(--padding-one);
+}
+.step-item.dir {
+  font-size: 1.2em;
+}
+.record-button, .stop-button {
+  width: var(--btn-height);
+  border-radius: calc(var(--btn-height) * 0.5);
+}
+.record-button:hover, .stop-button:hover {
+  background: crimson;
+  color: white;
+}
+.steps audio {
+  width: 100%;
+}
+.steps audio:focus {
+  outline: none;
+}
+.download-div {
+  display: none;
+  text-align: center;
+}
+.download-div .download-link {
+  display: block;
+  margin-top: 10px;
+  color: inherit;
+}
+.next-button {
+  width: 100%;
+}
+
+
+/* ===================== For Mobile =================== */
+@media (max-width: 600px) {
+
+  :root {
+    --header-height: 70px;
+    --padding-one: 20px;
+    --add-btn-size: 70px;
+    --btn-height: 60px;
+    --btn-font-size: 20px;
+    --font-size-menu: 20px;
+    --font-size-comp: 16px;
+    --font-size-input: 12px;
+  }
+  .material-icons.md-size {
+    font-size: 28px;
+  }
+  .container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translateX(0);
+    height: 100vh;
+    width: 100%;
+    border: 0;
+  }
+  .loader img {
+    top: 45%;
+  }
+  .comp {
+    height: calc(100vh - var(--header-height) - 60px);
+  }
+  .textarea {
+    /* font-size: var(--font-size-input); */
+    line-height: 1.6em;
+  }
+  .preview-item.list {
+    font-size: 0.7em;
+  }
+  .preview-list-item {
+    height: 3em;
+  }
+  .preview-list-item i {
+    font-size: 18px;
+  }
+}
+
