@@ -587,7 +587,7 @@ const appController = ((textC, uiC) => {
 
     // INPUT
     textInput.focus();
-    textInput.addEventListener('keyup', () => textInput.value != '' ? lostBtn.disabled = false : lostBtn.disabled = true);
+    textInput.addEventListener('input', () => textInput.value != '' ? lostBtn.disabled = false : lostBtn.disabled = true);
 
     // LOST-BUTTON
     lostBtn.addEventListener('click', () => {

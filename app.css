@@ -405,9 +405,7 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
   }
   .preview-list-item {
     height: 3em;
-  }
-  .preview-list-item i {
-    font-size: 18px;
+    line-height: 2em;
   }
 }
 
