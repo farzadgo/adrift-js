@@ -254,7 +254,7 @@ const textController = (() => {
       const newDrift = new Drift(ID, date, dest, sourceSteps, lostSteps, questions, recordings);
       data.drifts.push(newDrift);
       return newDrift
-      
+
     } else {
       alert("Wrong direction text format \nCheck the instructions please 🙄");
     }
@@ -580,7 +580,6 @@ const appController = ((textC, uiC) => {
       <button class="button txt lost-button" disabled route="/driftpreview"> Get Lost </button>
     `;
     DOM.section.innerHTML = html;
-    // document.querySelector('.textarea').focus();
 
     // LISTENERS
     const textInput = document.querySelector('.textarea');
