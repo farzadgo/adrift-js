@@ -256,6 +256,26 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
   outline: none;
   border: 1px solid crimson;
 }
+.paste-button {
+  position: fixed;
+  cursor: pointer;
+  z-index: 1;
+  height: var(--btn-height);
+  width: var(--btn-height);
+  border: 0;
+  background-color: transparent;
+  /* background-color: gold; */
+  bottom: calc(var(--btn-height) + var(--padding-one) * 2);
+}
+.paste-button.sample {
+  left: var(--padding-one);
+}
+.paste-button.clip {
+  right: var(--padding-one);
+}
+.paste-button[hidden] {
+  display: none;
+}
 .lost-button {
   width: 100%;
 }
@@ -384,6 +404,9 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
     border: 0;
     color: #9c9c9c;
     background: #f0f0f0;
+  }
+  .paste-button {
+    bottom: calc(var(--btn-height) + var(--padding-one) * 2 + 60px);
   }
   .preview-list-item {
     line-height: 2.4em;
