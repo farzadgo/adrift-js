@@ -603,6 +603,7 @@ const appController = ((textC, uiC) => {
     DOM.section.innerHTML = html;
 
     const sampleText = `# SAMPLE DIRECTION TEXT FROM THE MAPS
+
 Shared route
 From (53.1109262,8.8559480) to Starbucks via Parkallee.
 
