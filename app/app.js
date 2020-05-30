@@ -544,7 +544,7 @@ const appController = ((textC, uiC) => {
           `).join('')}
         </ul>
       </div>
-      <button class="button delete-button" route="/steps"><i class="material-icons md-size">delete</i></button>
+      <button class="button delete-button" route="/steps"> <i class="material-icons md-size">delete</i> </button>
       <button class="button txt start-button" disabled route="/steps">
         ${(() => {
           if (obj.records.every(e => e == undefined)) {
@@ -595,18 +595,87 @@ const appController = ((textC, uiC) => {
     DOM.section.classList.add('comp', 'new-comp');
 
     let html = `
-      <textarea class="textarea" type="text" value="none" placeholder="paste directions text here..."></textarea>
+      <textarea class="textarea" type="text" value="none" placeholder="Paste the directions text here (or tap the bottom right)\n\nTap the bottom left to paste sample text"></textarea>
+      <button class="paste-button sample"> <i class="material-icons md-size">format_list_numbered</i> </button>
+      <button class="paste-button clip"> <i class="material-icons md-size">content_paste</i> </button>
       <button class="button txt lost-button" disabled route="/driftpreview"> Get Lost </button>
     `;
     DOM.section.innerHTML = html;
 
+    const sampleText = `# SAMPLE DIRECTION TEXT FROM THE MAPS
+Shared route
+From (53.1109262,8.8559480) to Starbucks via Parkallee.
+
+21 min (6.1 km)
+
+1. Head northeast on Am Biologischen Garten toward Robert-Hooke-Straße
+2. Make a U-turn at Robert-Hooke-Straße
+3. Turn right
+4. Turn left onto Wilhelm-Herbst-Straße
+5. Continue onto Wiener Straße
+6. Turn right onto Universitätsallee
+7. Continue onto Parkallee
+8. At the roundabout, continue straight to stay on Parkallee
+9. Continue onto Rembertistraße
+10. Turn left onto Präsident-Kennedy-Platz
+11. Turn right onto Bürgermeisterin-Mevissen-Weg
+12. Turn right
+13. Take the pedestrian tunnel
+14. Continue straight onto Domshof
+15. Turn right to stay on Domshof
+16. Turn right onto Am Dom
+17. Turn left onto Am Markt
+18. Turn left to stay on Am Markt
+19. Turn left onto Marktstraße
+20. Arrive at location: Starbucks
+To see this route visit https://maps.app.goo.gl/55hdYLAKswbuFAP46`;
+
     // LISTENERS
     const textInput = document.querySelector('.textarea');
     const lostBtn = document.querySelector('.lost-button');
+    const pasteClipBtn = document.querySelector('.clip');
+    const pasteSampleBtn = document.querySelector('.sample');
 
     // INPUT
-    textInput.focus();
-    textInput.addEventListener('input', () => textInput.value != '' ? lostBtn.disabled = false : lostBtn.disabled = true);
+    textInput.value = '';
+    // textInput.focus();
+    textInput.addEventListener('input', () => {
+      if (textInput.value != '') {
+        lostBtn.disabled = false;
+        pasteSampleBtn.hidden = true;
+        pasteClipBtn.hidden = true;
+      } else {
+        lostBtn.disabled = true;
+        pasteSampleBtn.hidden = false;
+        pasteClipBtn.hidden = false;
+      }
+    });
+
+    // SAMPLE PASTER
+    pasteSampleBtn.addEventListener('click', e => {
+      textInput.value = sampleText;
+      lostBtn.disabled = false;
+      pasteClipBtn.hidden = true;
+      e.target.hidden = true;
+    });
+
+    // CLIPBOARD PASTER
+    pasteClipBtn.addEventListener('click', e => {
+      navigator.clipboard.readText()
+      .then(text => {
+        if (text) {
+          textInput.value = text;
+          lostBtn.disabled = false;
+          pasteSampleBtn.hidden = true;
+          e.target.hidden = true;
+        } else {
+          console.log('clipbaoad empty');
+        }
+      })
+      .catch(err => {
+        console.error('Failed to read clipboard contents: ', err);
+      });
+    });
 
     // LOST-BUTTON
     lostBtn.addEventListener('click', () => {
@@ -614,9 +683,7 @@ const appController = ((textC, uiC) => {
       if (newDrift) {
         getPreview(newDrift);
       } else {
-        textInput.value = '';
-        // textInput.focus();
-        lostBtn.disabled = true;
+        getNew();
       }
     });
 
