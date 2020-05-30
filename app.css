@@ -309,6 +309,7 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
   width: 10%;
 }
 .preview-list-item {
+  line-height: 1.4em;
   height: 36px;
 }
 .preview-list-item.box {
@@ -322,6 +323,8 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
 }
 .preview-list-item i {
   display: block;
+  position: relative;
+  top: -0.2em;
   font-size: 24px;
 }
 .start-button {
@@ -359,6 +362,7 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
   display: none;
   text-align: center;
   font-size: var(--font-size-sml);
+  line-height: 1.6em;
 }
 .download-div .download-link {
   display: block;
@@ -380,7 +384,7 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
     --btn-height: 60px;
     --font-size-big: 1.4rem;
     --font-size-med: 1.1rem;
-    --font-size-sml: 0.8rem;
+    --font-size-sml: 0.85rem;
   }
   .material-icons.md-size {
     font-size: 28px;
@@ -407,8 +411,5 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
   }
   .paste-button {
     bottom: calc(var(--btn-height) + var(--padding-one) * 2 + 60px);
-  }
-  .preview-list-item {
-    line-height: 2.4em;
   }
 }
