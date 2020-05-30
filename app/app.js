@@ -198,9 +198,32 @@ const textController = (() => {
     }
 
     const getQuestions = (arr) => {
-      let singleQuestion = 'What do you see at your left side?';
-      let qs = arr.map(e => singleQuestion);
-      return qs
+      const allQuestions = [
+        'What do you see on the left side?',
+        'What do you see at your right side?',
+        'Is the left side a public space or private!?',
+        'Is the right side a public space or private!?',
+        'Is there surveillance cameras around?',
+        'Is there a shop around? Is the shop old or new?',
+        'Do you think that this area a gentrified one?',
+        'Is there a coffee shop around?',
+        'What color is the facade? Or no buildings!?',
+        'What is the density of cars around?',
+        'Is this area old or new?',
+        'What can be history of the building?',
+        'Is there more cars or bikes around?',
+        'Is it dirty around?',
+        'What color is the building?',
+        'Is this area more social or the opposite?'
+      ];
+
+      const randomItem = (items) => {
+        let item = items[Math.floor(Math.random() * items.length)];
+        return item
+      };
+
+      const qsArr = arr.map(() => randomItem(allQuestions));
+      return qsArr
     }
 
     const allLines = inp.toLowerCase().split('\n').filter(Boolean);
@@ -214,11 +237,7 @@ const textController = (() => {
     const newDirs = getNewDirs(orgDirs.dirArr);
     // console.log('newDirs', newDirs);
     const questions = getQuestions(orgDirs.dirStr);
-
-    // const myJsonOne = JSON.stringify(neuArr);
-    // // console.log(myJsonOne);
-    // const myJsonTwo = JSON.stringify(couple);
-    // // console.log(myJsonTwo);
+    // console.log(questions);
     
     return {
       destination: destination,
@@ -272,7 +291,7 @@ const textController = (() => {
   }
 
   const data = { drifts: [] };
-
+  
   return {
     addDrift: (inp) => {
       return addDrift(inp);
@@ -413,7 +432,7 @@ const appController = ((textC, uiC) => {
           <button class="button stop-button" disabled> <i class="material-icons md-size">stop</i> </button>
         </div>
         <div class="step-item">
-          <audio class="audio-player" controls></audio>
+          <audio class="audio-player hidden" controls></audio>
         </div>
         <div class="step-item download-div">
           <p> If you want to record another voice regarding current step, download just recorded one below before preceeding </p>
@@ -453,8 +472,9 @@ const appController = ((textC, uiC) => {
         obj.records[emptyIndex] = e.data;
       }
       nextBtn.disabled = false;
-      console.log(obj);
+      // console.log(obj);
       // e.data contains a blob representing the recording
+      audio.classList.remove('hidden');
       audio.src = URL.createObjectURL(e.data);
       // audio.play();
       downloadDiv.style.display = "block";
@@ -482,7 +502,6 @@ const appController = ((textC, uiC) => {
       emptyIndex == obj.records.length - 1 ? getPreview(obj) : getSteps(obj);;
     });
 
-
   }
 
 
@@ -506,12 +525,12 @@ const appController = ((textC, uiC) => {
     let html = `
       <div class="preview">
         <div class="preview-item"> Forget about ${obj.dest} </div>
-        <ul class="preview-item list left">
+        <ul class="preview-item list org">
           ${Array(obj.srcSteps.length).fill().map((item, i) => `
           <li class="preview-list-item"> ${obj.srcSteps[i]} </li>
           `).join('')}
         </ul>
-        <ul class="preview-item list right">
+        <ul class="preview-item list">
           ${Array(obj.lstSteps.length).fill().map((item, i) => `
           <li class="preview-list-item"> ${obj.lstSteps[i]} </li>
           `).join('')}
@@ -519,8 +538,8 @@ const appController = ((textC, uiC) => {
         <ul class="preview-item list boxes">
           ${Array(obj.records.length).fill().map((item, i) => `
             ${obj.records[i] == null
-              ? `<li class="preview-list-item box"> <i class="material-icons"> check_box_outline_blank </i> </li>`
-              : `<li class="preview-list-item box"> <a class="download-link"> <i class="material-icons"> save </i> </a> </li>`
+              ? `<li class="preview-list-item box empty"> <i class="material-icons"> check_box_outline_blank </i> </li>`
+              : `<li class="preview-list-item box"> <a class="download-link"> <i class="material-icons"> save_alt </i> </a> </li>`
             }
           `).join('')}
         </ul>
@@ -610,7 +629,7 @@ const appController = ((textC, uiC) => {
     let drifts = textC.getData().drifts;
     console.log("getHome - data.drift 🡧");
     console.log(drifts);
-
+    
     // HEADER-LEFT
     DOM.headerLeft.setAttribute("name", "list");
     DOM.headerLeft.innerHTML = '<span>all drifts</span>';
@@ -675,14 +694,13 @@ const appController = ((textC, uiC) => {
       e.returnValue = 'whaaaaat!?';
     });
   }
-  
 
   return {
     init: () => {
       console.log("app started..");
       loaderAnim();
       // setupRouter();
-      preventer();
+      // preventer();
       getList();
       getHeader();
     },

@@ -5,10 +5,9 @@
   --padding-one: 20px;
   --add-btn-size: 90px;
   --btn-height: 80px;
-  --btn-font-size: 24px;
-  --font-size-menu: 24px;
-  --font-size-comp: 18px;
-  --font-size-input: 16px;
+  --font-size-big: 1.4rem;
+  --font-size-med: 1.2rem;
+  --font-size-sml: 1.0rem;
 }
 * {
   margin: 0;
@@ -40,7 +39,7 @@ body {
 /* IMPORTANT for target */
 button > *, a > * { pointer-events: none; }
 
-button:focus { outline: none; }
+button:focus, audio:focus { outline: none; }
 
 a:link, a:visited, a:active { text-decoration: none; }
 
@@ -105,7 +104,7 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
   height: calc(100% - var(--header-height));
   top: var(--header-height);
   z-index: 2;
-  font-size: var(--font-size-menu);
+  font-size: var(--font-size-big);
   background-color: black;
   opacity: 0;
   visibility: hidden;
@@ -151,7 +150,7 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
 }
 .header-left {
   float: left;
-  font-size: var(--font-size-menu);
+  font-size: var(--font-size-big);
 }
 .header-right {
   float: right;
@@ -186,7 +185,7 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
 }
 .button.txt {
   font-family: inherit;
-  font-size: var(--btn-font-size);
+  font-size: var(--font-size-big);
   font-weight: bold;
 }
 .button:hover {
@@ -204,6 +203,7 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
 /* --------------------- List Comp --------------------- */
 .list-comp {
   overflow-y: auto;
+  font-size: var(--font-size-med);
 }
 .list-message {
   position: relative;
@@ -221,7 +221,6 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
   cursor: pointer;
 }
 .list-item p, .list-message p {
-  font-size: var(--font-size-comp);
   line-height: 1.6em;
 }
 .item-title {
@@ -248,7 +247,7 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
   padding: 10px;
   resize: none;
   overflow-y: auto;
-  font-size: var(--font-size-input);
+  font-size: var(--font-size-sml);
   font-weight: normal;
   font-family: 'Consolas', monospace;
   line-height: 1.4em;
@@ -262,44 +261,41 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
 }
 
 
-/* --------------------- Preview Comp --------------------- */
-.preview {
+/* --------------------- Preview / Steps Comp --------------------- */
+.preview, .steps {
   display: block;
   position: relative;
   height: calc(100% - var(--btn-height) - var(--padding-one));
   margin-bottom: var(--padding-one);
   overflow-y: auto;
-  font-size: var(--font-size-comp);
+  font-size: var(--font-size-med);
 }
-.preview-item {
+.preview-item, .step-item {
   margin-bottom: var(--padding-one);
 }
+
+/* --------------------------------- */
 .preview-item.list {
   list-style: none;
-  font-size: 0.9em;
-  font-weight: normal;
-  font-family: 'Consolas', monospace;
-}
-.preview-item.left {
+  font-size: var(--font-size-sml);
   width: 45%;
   float: left;
+}
+.preview-item.org {
   color: crimson;
 }
 .preview-item.boxes {
-  float: left;
+  float: right;
   width: 10%;
 }
-.preview-item.right {
-  width: 45%;
-  float: right;
-}
-
 .preview-list-item {
   height: 36px;
-  line-height: 1.6em;
 }
 .preview-list-item.box {
   text-align: center;
+}
+.preview-list-item.empty {
+  color: #9c9c9c;
 }
 .preview-list-item a {
   color: inherit;
@@ -308,7 +304,6 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
   display: block;
   font-size: 24px;
 }
-
 .start-button {
   width: calc(100% -  var(--btn-height) - var(--padding-one));
   float: right;
@@ -321,21 +316,10 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
   background-color: crimson;
 }
 
-
-/* --------------------- Steps Comp --------------------- */
-.steps {
-  display: block;
-  position: relative;
-  height: calc(100% - var(--btn-height) - var(--padding-one));
-  margin-bottom: var(--padding-one);
-  overflow-y: auto;
-  font-size: var(--font-size-comp);
-}
-.step-item {
-  margin-bottom: var(--padding-one);
-}
+/* --------------------------------- */
 .step-item.dir {
-  font-size: 1.2em;
+  font-size: var(--font-size-big);
+  line-height: 1.4em;
 }
 .record-button, .stop-button {
   width: var(--btn-height);
@@ -345,15 +329,16 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
   background: crimson;
   color: white;
 }
-.steps audio {
+.audio-player {
   width: 100%;
 }
-.steps audio:focus {
-  outline: none;
+.audio-player.hidden {
+  display: none;
 }
 .download-div {
   display: none;
   text-align: center;
+  font-size: var(--font-size-sml);
 }
 .download-div .download-link {
   display: block;
@@ -373,10 +358,9 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
     --padding-one: 20px;
     --add-btn-size: 70px;
     --btn-height: 60px;
-    --btn-font-size: 20px;
-    --font-size-menu: 20px;
-    --font-size-comp: 16px;
-    --font-size-input: 12px;
+    --font-size-big: 1.4rem;
+    --font-size-med: 1.1rem;
+    --font-size-sml: 0.8rem;
   }
   .material-icons.md-size {
     font-size: 28px;
@@ -396,16 +380,12 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
   .comp {
     height: calc(100vh - var(--header-height) - 60px);
   }
-  .textarea {
-    /* font-size: var(--font-size-input); */
-    line-height: 1.6em;
-  }
-  .preview-item.list {
-    font-size: 0.7em;
+  .button:hover {
+    border: 0;
+    color: #9c9c9c;
+    background: #f0f0f0;
   }
   .preview-list-item {
-    height: 3em;
-    line-height: 2em;
+    line-height: 2.4em;
   }
 }
-
