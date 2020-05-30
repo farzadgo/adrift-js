@@ -224,7 +224,7 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
   line-height: 1.6em;
 }
 .item-title {
-  color: tomato;
+  color: crimson;
 }
 .add-button {
   position: fixed;
@@ -362,7 +362,7 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
   display: none;
   text-align: center;
   font-size: var(--font-size-sml);
-  line-height: 1.6em;
+  line-height: 1.8em;
 }
 .download-div .download-link {
   display: block;
