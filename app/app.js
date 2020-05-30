@@ -768,7 +768,7 @@ To see this route visit https://maps.app.goo.gl/55hdYLAKswbuFAP46`;
       console.log("app started..");
       loaderAnim();
       // setupRouter();
-      // preventer();
+      preventer();
       getList();
       getHeader();
     },
