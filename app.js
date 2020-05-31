@@ -311,15 +311,9 @@ const uiController = (() => {
 
   const domElements = {
     section: document.querySelector('.main'),
-
     menu: document.querySelector('.menu'),
     menuItems: document.querySelectorAll('.menu-item'),
-    menuInsts: document.querySelector('.insts'),
-    menuAbout: document.querySelector('.about'),
-    menuDerive: document.querySelector('.derive'),
-    menuSI: document.querySelector('.si'),
-    menuLinks: document.querySelector('.links'),
-
+    menuTitles: document.querySelectorAll('.menu-title'),
     header: document.querySelector('.header'),
     headerRight: document.querySelector('.header-right'),
     headerLeft: document.querySelector('.header-left')
@@ -348,7 +342,7 @@ const appController = ((textC, uiC) => {
     DOM.headerRight.addEventListener('click', (e) => {
       DOM.menu.classList.toggle('is-visible');
       headerToggler(e.target);
-      menuItemsFade(DOM.menuItems);
+      showMenu(DOM.menu);
     });
 
     DOM.headerLeft.addEventListener('click', (e) => {     
@@ -375,28 +369,26 @@ const appController = ((textC, uiC) => {
     }
   }
 
-  const menuItemsFade = (nodes) => {
-    if (DOM.menu.classList.contains('is-visible')) {
-      nodes.forEach(el => {
-        el.style.opacity = 1.0;
-        el.style.visibility = "visible";
-        el.style.height = "var(--header-height)";
-        el.style.transition = "opacity 0.4s ease-in, visibility 0.4s ease-in, height 0.4s ease";
-      });
+  const showMenu = (el) => {
+    // console.log(el.children);
+    // should make menuContents hidden if menu closed
+    if (el.classList.contains('is-visible')) {
+      el.style.display = "block";
     } else {
-      nodes.forEach(el => {
-        el.style.opacity = 0;
-        el.style.visibility = "hidden";
-        el.style.height = 0;
-        el.style.transition = "none";
-      });
+      el.style.display = "none";
     }
   }
 
-  // ------------------------------------------------------------------------------------------- 🡧
-  const getMenu = () => {
-    DOM.menuInsts.addEventListener('click', () => {
-      document.querySelector('.instructions').style.display = "block";
+  const getMenuContent = () => {
+    DOM.menuTitles.forEach(el => {
+      el.addEventListener('click', e => {
+        const menuContent = e.target.nextElementSibling;
+        if (menuContent.hidden == true) {
+          menuContent.hidden = false;
+        } else {
+          menuContent.hidden = true;
+        }
+      });
     });
   }
 
@@ -466,20 +458,23 @@ const appController = ((textC, uiC) => {
     const nextBtn = document.querySelector('.next-button');
 
     // RECORDING STUFF
-    function startRecording() {
+    const startRecording = () => {
+      console.log('recording started');
       recordBtn.disabled = true;
       stopBtn.disabled = false;
       recorder.start();
     }
     
-    function stopRecording() {
+    const stopRecording = () => {
+      console.log('recordig stopped');
       recordBtn.disabled = false;
       stopBtn.disabled = true;
       // stopping the recorder will eventually trigger the `dataavailable` event and we can complete the recording process
       recorder.stop();
     }
 
-    function onRecordingReady(e) {      
+    const onRecordingReady = (e) => {  
+      console.log('onRecordReady function');
       if (e.data.size > 0) {
         obj.records[emptyIndex] = e.data;
       }
@@ -673,6 +668,17 @@ To see this route visit https://maps.app.goo.gl/55hdYLAKswbuFAP46`;
     });
 
     // CLIPBOARD PASTER
+
+    // navigator.permissions.query({name: "clipboard-read"}).then(result => {
+    //   // If permission to read the clipboard is granted or if the user will be prompted to allow it, we proceed.
+    //   if (result.state == "granted" || result.state == "prompt") {
+    //     console.log('permission granted');
+    //     navigator.clipboard.read().then(data => {
+    //       console.log(data);
+    //     });
+    //   }
+    // });
+
     pasteClipBtn.addEventListener('click', e => {
       navigator.clipboard.readText()
       .then(text => {
@@ -780,10 +786,10 @@ To see this route visit https://maps.app.goo.gl/55hdYLAKswbuFAP46`;
       console.log("app started..");
       loaderAnim();
       // setupRouter();
-      // preventer();
+      preventer();
       getList();
       getHeader();
-      getMenu();
+      getMenuContent();
     },
     getData: () => {
       return data

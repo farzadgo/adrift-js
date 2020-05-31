@@ -45,7 +45,7 @@ a:link, a:visited, a:active { text-decoration: none; }
 
 input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
 
-.header > * span, .header > * i, .menu > * span, .menu > * i {
+.header > * span, .header > * i {
   display: block;
   position: relative;
   top: 50%;
@@ -98,48 +98,50 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
 
 /* --------------------- Menu Component --------------------- */
 .menu {
-  /* display: none; */
+  display: none;
   position: fixed;
   width: 100%;
   height: calc(100% - var(--header-height));
   top: var(--header-height);
   z-index: 2;
-  font-size: var(--font-size-big);
   background-color: black;
-  opacity: 0;
-  visibility: hidden;
   overflow-y: auto;
 }
 .menu-item {
-  display: block;
-  cursor: pointer;
+  position: relative;
   padding: 0 var(--padding-one);
-  height: 0;
-  opacity: 0;
-  visibility: hidden;
   color: white;
   z-index: 3;
+  font-size: var(--font-size-sml);
 }
-.menu-item:hover {
-  color: black;
-  background-color: white;
+.menu-title {
+  display: block;
+  cursor: pointer;
+  font-size: var(--font-size-big);
+  height: var(--header-height);
 }
-.menu.is-visible {
-  /* display: block; */
-  opacity: 1.0;
-  visibility: visible;
+.menu-title span {
+  display: block;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }
-
-.instructions {
-  display: none;
-  padding: 0 var(--padding-one);
+.menu-title:hover {
+  font-style: oblique;
 }
-.menu-text {
-  color: white;
-  font-size: var(--font-size-med);
+.menu-content {
+  border-top: 2px solid white;
+  margin-bottom: calc(var(--padding-one) * 2);
 }
-.menu-img {
-  width: 100%;
+.content-text {
+  margin-top: var(--padding-one);
+}
+.content-img {
+  position: relative;
+  width: 80%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 10px;
 }
 
 /* --------------------- Header Component --------------------- */
