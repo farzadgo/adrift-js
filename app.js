@@ -311,10 +311,16 @@ const uiController = (() => {
 
   const domElements = {
     section: document.querySelector('.main'),
+
     menu: document.querySelector('.menu'),
     menuItems: document.querySelectorAll('.menu-item'),
+    menuInsts: document.querySelector('.insts'),
+    menuAbout: document.querySelector('.about'),
+    menuDerive: document.querySelector('.derive'),
+    menuSI: document.querySelector('.si'),
+    menuLinks: document.querySelector('.links'),
+
     header: document.querySelector('.header'),
-    headerBtn: document.querySelector('.header-button'),
     headerRight: document.querySelector('.header-right'),
     headerLeft: document.querySelector('.header-left')
   }
@@ -387,6 +393,12 @@ const appController = ((textC, uiC) => {
     }
   }
 
+  // ------------------------------------------------------------------------------------------- 🡧
+  const getMenu = () => {
+    DOM.menuInsts.addEventListener('click', () => {
+      document.querySelector('.instructions').style.display = "block";
+    });
+  }
 
   // ------------------------------------------------------------------------------------------- 🡧
 
@@ -595,7 +607,7 @@ const appController = ((textC, uiC) => {
     DOM.section.classList.add('comp', 'new-comp');
 
     let html = `
-      <textarea class="textarea" type="text" value="none" placeholder="Paste the directions text here (or tap the bottom right)\n\nTap the bottom left to paste sample text"></textarea>
+      <textarea class="textarea" type="text" value="none" placeholder="Paste the directions text here or tap the bottom right 🡦\n\nTo paste a sample directions text tap the bottom left 🡧"></textarea>
       <button class="paste-button sample"> <i class="material-icons md-size">format_list_numbered</i> </button>
       <button class="paste-button clip"> <i class="material-icons md-size">content_paste</i> </button>
       <button class="button txt lost-button" disabled route="/driftpreview"> Get Lost </button>
@@ -768,9 +780,10 @@ To see this route visit https://maps.app.goo.gl/55hdYLAKswbuFAP46`;
       console.log("app started..");
       loaderAnim();
       // setupRouter();
-      preventer();
+      // preventer();
       getList();
       getHeader();
+      getMenu();
     },
     getData: () => {
       return data
