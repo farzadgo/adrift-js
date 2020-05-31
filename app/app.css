@@ -5,7 +5,7 @@
   --padding-one: 20px;
   --add-btn-size: 90px;
   --btn-height: 80px;
-  --font-size-big: 1.4rem;
+  --font-size-big: 1.6rem;
   --font-size-med: 1.2rem;
   --font-size-sml: 1.0rem;
 }
@@ -108,20 +108,17 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
   background-color: black;
   opacity: 0;
   visibility: hidden;
+  overflow-y: auto;
 }
 .menu-item {
   display: block;
   cursor: pointer;
-  padding: 0 20px;
+  padding: 0 var(--padding-one);
   height: 0;
   opacity: 0;
   visibility: hidden;
   color: white;
-}
-.menu-icon {
-  text-align: center;
-  min-width: var(--header-height);
-  float: right;
+  z-index: 3;
 }
 .menu-item:hover {
   color: black;
@@ -133,6 +130,17 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
   visibility: visible;
 }
 
+.instructions {
+  display: none;
+  padding: 0 var(--padding-one);
+}
+.menu-text {
+  color: white;
+  font-size: var(--font-size-med);
+}
+.menu-img {
+  width: 100%;
+}
 
 /* --------------------- Header Component --------------------- */
 .header {
@@ -140,7 +148,7 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
   height: var(--header-height);
   z-index: 1;
 }
-.header-button {
+.header-item {
   height: 100%;
   position: relative;
   text-align: center;
@@ -155,10 +163,10 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
 .header-right {
   float: right;
 }
-.header-button.inverted {
+.header-item.inverted {
   color: white;
 }
-.header-button.inverted:hover {
+.header-item.inverted:hover {
   color: white;
   background-color: crimson;
 }
@@ -384,7 +392,7 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
     --btn-height: 60px;
     --font-size-big: 1.4rem;
     --font-size-med: 1.1rem;
-    --font-size-sml: 0.85rem;
+    --font-size-sml: 0.9rem;
   }
   .material-icons.md-size {
     font-size: 28px;
