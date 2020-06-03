@@ -126,8 +126,13 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
   top: 50%;
   transform: translateY(-50%);
 }
-.menu-title:hover {
-  font-style: oblique;
+.menu-title span[data-before]::before {
+  position: relative;
+  content: attr(data-before) " ";
+  font-family: "Material Icons";
+  /* font-size: 36px; */
+  font-weight: 400;
+  top: 0.2em;
 }
 .menu-content {
   border-top: 2px solid white;
