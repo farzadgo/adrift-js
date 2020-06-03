@@ -379,18 +379,37 @@ const appController = ((textC, uiC) => {
     }
   }
 
-  const getMenuContent = () => {
+  // ------------------------------------------------------------------------------------------- 🡧
+
+  const getMenu = () => {
+
     DOM.menuTitles.forEach(el => {
       el.addEventListener('click', e => {
+        const titleSpan = e.target.firstChild;
         const menuContent = e.target.nextElementSibling;
         if (menuContent.hidden == true) {
-          menuContent.hidden = false;
+          menuContent.hidden = false;          
+          titleSpan.dataset.before = "keyboard_arrow_down";
         } else {
           menuContent.hidden = true;
+          titleSpan.dataset.before = "keyboard_arrow_right";
         }
       });
     });
+
+    const imageElements = document.querySelectorAll('.content-img');
+    imageElements.forEach((e, i) => {
+      catchImages(e, i).then(response => console.log('yay'));
+    });
+
+    async function catchImages(e, i) {
+      const response = await fetch(`assets/screenshots/adrift_inst_${i+1}.jpg`);
+      const blob = await response.blob();
+      e.src = URL.createObjectURL(blob);
+    }
+
   }
+
 
   // ------------------------------------------------------------------------------------------- 🡧
 
@@ -786,10 +805,10 @@ To see this route visit https://maps.app.goo.gl/55hdYLAKswbuFAP46`;
       console.log("app started..");
       loaderAnim();
       // setupRouter();
-      preventer();
+      // preventer();
       getList();
       getHeader();
-      getMenuContent();
+      getMenu();
     },
     getData: () => {
       return data

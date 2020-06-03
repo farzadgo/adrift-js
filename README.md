@@ -12,6 +12,8 @@ Another simple method of saving data including media files, here voice recording
 - [Client-side storage - MDN](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Client-side_storage)
 - [Web Storage API - MDN](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API)
 
+app/assets/screenshots/adrift_maps_01.jpg
+https://raw.githubusercontent.com/farzadgo/adrift/master/app/assets/screenshots/adrift_maps_01.jpg
 
 
 ### Links connected to the project
