@@ -335,14 +335,44 @@ const appController = ((textC, uiC) => {
 
   const DOM = uiC.getDomElements();
 
-  // ------------------------------------------------------------------------------------------- 🡧
+  const addNewDrift = (inp) => {
+    let inputValue = inp;
+    let newDrift = textC.addDrift(inputValue);    
+    return newDrift
+  }
 
-  const getHeader = () => {
+  const deleteDrift = (e) => {
+    let index;
+    // console.log(typeof e.target.parentNode.id);
+    const currentId = Number(e.target.parentNode.id);
+    const ids = textC.getData().drifts.map(elm => elm.id);
+    index = ids.indexOf(currentId);
+    textC.getData().drifts.splice(index, 1);
+    getList();
+  }
+
+  const loaderAnim = () => {
+    window.addEventListener('load', () => {
+      document.querySelector('.loader').className += " hidden";
+    });
+  }
+
+  const preventer = () => {
+    window.addEventListener('beforeunload', (e) => {
+      e.preventDefault();
+      e.returnValue = 'whaaaaat!?';
+    });
+  }
+
+
+  // ------------------------------------------------------------------------------------------- 🡧
+  const headerHandler = () => {
+
     DOM.headerRight.innerHTML = '<i class="material-icons md-size"> menu </i>';
+
     DOM.headerRight.addEventListener('click', (e) => {
       DOM.menu.classList.toggle('is-visible');
       headerToggler(e.target);
-      showMenu(DOM.menu);
     });
 
     DOM.headerLeft.addEventListener('click', (e) => {     
@@ -353,35 +383,26 @@ const appController = ((textC, uiC) => {
         getPreview(currentDrift);
       }
     });
+
+    const headerToggler = (e) => {
+      if (DOM.menu.classList.contains('is-visible')) {
+        e.innerHTML = '<i class="material-icons md-size"> close </i>';
+        e.classList.add('inverted');
+        DOM.headerLeft.style.display = "none";
+        DOM.header.style.backgroundColor = "black";
+      } else {
+        e.innerHTML = '<i class="material-icons md-size"> menu </i>';
+        e.classList.remove('inverted');
+        DOM.header.style.backgroundColor = "white";
+        DOM.headerLeft.style.display = "block";
+      }
+    }
+
   }
 
-  const headerToggler = (e) => {
-    if (DOM.menu.classList.contains('is-visible')) {
-      e.innerHTML = '<i class="material-icons md-size"> close </i>';
-      e.classList.add('inverted');
-      DOM.headerLeft.style.display = "none";
-      DOM.header.style.backgroundColor = "black";
-    } else {
-      e.innerHTML = '<i class="material-icons md-size"> menu </i>';
-      e.classList.remove('inverted');
-      DOM.header.style.backgroundColor = "white";
-      DOM.headerLeft.style.display = "block";
-    }
-  }
-
-  const showMenu = (el) => {
-    // console.log(el.children);
-    // should make menuContents hidden if menu closed
-    if (el.classList.contains('is-visible')) {
-      el.style.display = "block";
-    } else {
-      el.style.display = "none";
-    }
-  }
 
   // ------------------------------------------------------------------------------------------- 🡧
-
-  const getMenu = () => {
+  const menuHandler = () => {
 
     DOM.menuTitles.forEach(el => {
       el.addEventListener('click', e => {
@@ -409,26 +430,7 @@ const appController = ((textC, uiC) => {
     }
 
   }
-
-
-  // ------------------------------------------------------------------------------------------- 🡧
-
-  const addNewDrift = (inp) => {
-    let inputValue = inp;
-    let newDrift = textC.addDrift(inputValue);    
-    return newDrift
-  }
-
-  const deleteDrift = (e) => {
-    let index;
-    // console.log(typeof e.target.parentNode.id);
-    const currentId = Number(e.target.parentNode.id);
-    const ids = textC.getData().drifts.map(elm => elm.id);
-    index = ids.indexOf(currentId);
-    textC.getData().drifts.splice(index, 1);
-    getList();
-  }
-
+  
 
   // ------------------------------------------------------------------------------------------- 🡧
 
@@ -687,17 +689,6 @@ To see this route visit https://maps.app.goo.gl/55hdYLAKswbuFAP46`;
     });
 
     // CLIPBOARD PASTER
-
-    // navigator.permissions.query({name: "clipboard-read"}).then(result => {
-    //   // If permission to read the clipboard is granted or if the user will be prompted to allow it, we proceed.
-    //   if (result.state == "granted" || result.state == "prompt") {
-    //     console.log('permission granted');
-    //     navigator.clipboard.read().then(data => {
-    //       console.log(data);
-    //     });
-    //   }
-    // });
-
     pasteClipBtn.addEventListener('click', e => {
       navigator.clipboard.readText()
       .then(text => {
@@ -787,29 +778,17 @@ To see this route visit https://maps.app.goo.gl/55hdYLAKswbuFAP46`;
 
   // ------------------------------------------------------------------------------------------- 🡧
 
-  const loaderAnim = () => {
-    window.addEventListener('load', () => {
-      document.querySelector('.loader').className += " hidden";
-    });
-  }
-
-  const preventer = () => {
-    window.addEventListener('beforeunload', (e) => {
-      e.preventDefault();
-      e.returnValue = 'whaaaaat!?';
-    });
-  }
-
   return {
     init: () => {
       console.log("app started..");
-      loaderAnim();
       // setupRouter();
-      // preventer();
+      loaderAnim();
+      preventer();
+      headerHandler();
+      menuHandler();
       getList();
-      getHeader();
-      getMenu();
     },
+    
     getData: () => {
       return data
     }

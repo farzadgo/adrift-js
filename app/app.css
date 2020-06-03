@@ -45,20 +45,12 @@ a:link, a:visited, a:active { text-decoration: none; }
 
 input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
 
-.header > * span, .header > * i {
-  display: block;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-
 /* --------------------- Container --------------------- */
 .container {
   position: relative;
   background-color: white;
   height: calc(100vh - 100px);
-  width: 500px;
+  width: 520px;
   top: 40px;
   left: 50%;
   transform: translateX(-50%);
@@ -106,13 +98,17 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
   z-index: 2;
   background-color: black;
   overflow-y: auto;
+  padding-bottom: var(--header-height);
+}
+.menu.is-visible {
+  display: block;
 }
 .menu-item {
   position: relative;
   padding: 0 var(--padding-one);
   color: white;
   z-index: 3;
-  font-size: var(--font-size-sml);
+  font-size: var(--font-size-med);
 }
 .menu-title {
   display: block;
@@ -128,23 +124,24 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
 }
 .menu-title span::before, .content-text.external::after {
   position: relative;
-  font-family: "Material Icons";
-  /* font-size: 36px; */
-  font-weight: 400;
   top: 0.2em;
+  font-family: "Material Icons";
+  font-size: 24px;
+  font-weight: 400;
 }
 .menu-title span[data-before]::before {
   content: attr(data-before) " ";
 }
 .menu-content {
-  border-top: 2px solid white;
+  border-top: 1px solid white;
   margin-bottom: calc(var(--padding-one) * 2);
-  line-height: 1.6em;
+  /* padding-bottom: 30px; */
 }
 .content-text {
   display: block;
   margin-top: var(--padding-one);
   color: inherit;
+  line-height: 1.4em;
 }
 .content-text.external::after {
   content: "launch";
@@ -158,11 +155,18 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
   margin-top: 10px;
 }
 
+
 /* --------------------- Header Component --------------------- */
 .header {
   position: relative;
   height: var(--header-height);
   z-index: 1;
+}
+.header > * span, .header > * i {
+  display: block;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }
 .header-item {
   height: 100%;
@@ -223,6 +227,7 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
   color: #9c9c9c;
   background: #f0f0f0;
 }
+
 
 /* --------------------- List Comp --------------------- */
 .list-comp {
@@ -288,7 +293,6 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
   width: var(--btn-height);
   border: 0;
   background-color: transparent;
-  /* background-color: gold; */
   bottom: calc(var(--btn-height) + var(--padding-one) * 2);
 }
 .paste-button.sample {
@@ -296,9 +300,6 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
 }
 .paste-button.clip {
   right: var(--padding-one);
-}
-.paste-button[hidden] {
-  display: none;
 }
 .lost-button {
   width: 100%;
@@ -318,7 +319,6 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
   margin-bottom: var(--padding-one);
 }
 
-/* --------------------------------- */
 .preview-item.list {
   list-style: none;
   font-size: var(--font-size-sml);
@@ -363,10 +363,12 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
   background-color: crimson;
 }
 
-/* --------------------------------- */
 .step-item.dir {
   font-size: var(--font-size-big);
   line-height: 1.4em;
+}
+.step-item:nth-child(3) {
+  text-align: center;
 }
 .record-button, .stop-button {
   width: var(--btn-height);
