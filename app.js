@@ -399,7 +399,7 @@ const appController = ((textC, uiC) => {
 
     const imageElements = document.querySelectorAll('.content-img');
     imageElements.forEach((e, i) => {
-      catchImages(e, i).then(response => console.log('yay'));
+      catchImages(e, i).then(response => console.log('image successfully fetched'));
     });
 
     async function catchImages(e, i) {
