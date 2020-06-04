@@ -1,7 +1,7 @@
 {
   "name": "adrift-js",
   "version": "1.0.0",
-  "description": "***\r Adrift is a front-end single page application written in vanilla Javascrip. Adrift application is based on theories connected to the Situationist Internation.",
+  "description": "***\r Adrift is a front-end single page application written in vanilla Javascrip. Adrift application is based on theories and methods from Situationist Internation.",
   "main": "app.js",
   "scripts": {
     "deploy": "gh-pages -d app"

@@ -425,6 +425,7 @@ const appController = ((textC, uiC) => {
 
     async function catchImages(e, i) {
       const response = await fetch(`assets/screenshots/adrift_inst_${i+1}.jpg`);
+      // console.log(response.url);
       const blob = await response.blob();
       e.src = URL.createObjectURL(blob);
     }
@@ -788,7 +789,7 @@ To see this route visit https://maps.app.goo.gl/55hdYLAKswbuFAP46`;
       menuHandler();
       getList();
     },
-    
+
     getData: () => {
       return data
     }
