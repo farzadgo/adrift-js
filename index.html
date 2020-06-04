@@ -90,7 +90,18 @@
         <div class="menu-item">
           <a class="menu-title"><span data-before="keyboard_arrow_right">Development and the app</span></a>
           <div class="menu-content" hidden>
-            <p class="content-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, se</p>
+            <p class="content-text">
+              Adrift is a front-end single page application (SPA) written in vanilla Javascript. 
+            </p>
+            <p class="content-text">
+              The applications data storage is currently sessionStorage, which means after the page is reload the data will be cleaned. Another method for saving data including media files (voice recordings (blobs) here) is to use cloud services, yet regarding data privacy issues and concerns, it is prefered to use client-side storage (permenatly on the device storage by downloading and temporarily on the browser with Web Storage). Hence, to save the voice recordings on the devices by tapping/clicking on specifed download buttons, is to save the drifts.
+            </p>
+            <p class="content-text">
+              Unlike sessionStorage, localStorage can rather keep simple data (here directions, steps, orders) for later visit of the page whick can be implemented in later versions.        
+            </p>
+            <p class="content-text">
+              Adrift uses modern web API such as MediaStream Recording API and Clipboard API, which currently are not supported by iOS devices.    
+            </p>
           </div>
         </div>
 
