@@ -1,56 +1,3 @@
-// xoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxo ROUTER
-
-
-const setupRouter = (() => {
-  window.addEventListener('load', () => {
-
-    const activeRoutes = Array.from(document.querySelectorAll('[route]'));
-    // console.log(activeRoutes);
-
-    const navigate = (e) => {
-      let route = e.target.attributes[1].value;
-      // console.log(route);
-
-      // let routeInfo = router.routes.filter((r) => {
-      //   return r.path === route;
-      // })[0];
-      // console.log(routeInfo);
-      // if (!routeInfo) {
-      //   console.log("wrong route etc..");
-      // } else {
-      //   window.history.pushState({}, '', routeInfo.path);
-      // }
-      window.history.pushState({}, '', route);
-    };
-
-    activeRoutes.forEach((route) => {
-      route.addEventListener('click', navigate, false);
-    });
-
-    const Router = function(name, routes) {
-      this.name = name;
-      this.routes = routes
-      // OR 
-      // return {
-      //   name: name,
-      //   routes: routes
-      // }
-    }
-
-    const router = new Router('Router', [
-      { path: '/', name: 'Root'},
-      { path: '/newdrift', name: 'New Drift'},
-      { path: '/driftpreview', name: 'Drift Preview'},
-    ]);
-    // console.log(router);
-
-  });
-
-  // return {
-  // }
-
-});
-
 
 // xoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxo TEXT INTERPRETTER
 
@@ -351,19 +298,6 @@ const appController = ((textC, uiC) => {
     getList();
   }
 
-  const loaderAnim = () => {
-    window.addEventListener('load', () => {
-      document.querySelector('.loader').className += " hidden";
-    });
-  }
-
-  const preventer = () => {
-    window.addEventListener('beforeunload', (e) => {
-      e.preventDefault();
-      e.returnValue = 'whaaaaat!?';
-    });
-  }
-
 
   // ------------------------------------------------------------------------------------------- 🡧
   const headerHandler = () => {
@@ -404,30 +338,83 @@ const appController = ((textC, uiC) => {
   // ------------------------------------------------------------------------------------------- 🡧
   const menuHandler = () => {
 
-    DOM.menuTitles.forEach(el => {
-      el.addEventListener('click', e => {
-        const titleSpan = e.target.firstChild;
-        const menuContent = e.target.nextElementSibling;
-        if (menuContent.hidden == true) {
-          menuContent.hidden = false;          
-          titleSpan.dataset.before = "keyboard_arrow_down";
-        } else {
-          menuContent.hidden = true;
-          titleSpan.dataset.before = "keyboard_arrow_right";
+    const swiperContainer = document.querySelector('.swiper-container');
+    const swiperCloseBtn = document.querySelector('.swiper-close');
+    const hideSwiper = () => {
+      swiperContainer.classList.add('hidden')
+    };
+    setTimeout(hideSwiper, 100);
+
+    // SWIPER CLOSE BTN LISTENER
+    swiperCloseBtn.addEventListener('click', () => {
+      hideSwiper();
+    });
+
+    // MENU ITEMS LISTENERS
+    DOM.menuTitles.forEach((el, i) => {
+      if (i !== 0) {
+        el.addEventListener('click', e => {
+          const titleSpan = e.target.firstChild;
+          const menuContent = e.target.nextElementSibling;
+          const siblings = getSiblings(e.target.parentNode);
+          if (menuContent.hidden == true) {
+            menuContent.hidden = false;
+            siblings.forEach(e => e.style.display = "none")
+            titleSpan.dataset.before = "arrow_back";
+          } else {
+            menuContent.hidden = true;
+            siblings.forEach(e => e.style.display = "block")
+            titleSpan.dataset.before = " ";
+          }
+        });
+      } else {
+        el.addEventListener('click', () => swiperContainer.classList.remove('hidden'));
+      }
+    });
+
+
+    // gridElements.forEach((e, i) => {
+    //   e.addEventListener('click', e => {
+    //     console.log(e.target, i);
+    //     catchImages(e.target, i);
+    //     // display block sth like loader >> for the lightbox ;)`
+    //   });
+    // });
+
+    // imageElements.forEach((e, i) => {
+    //   catchImages(e, i).then(response => console.log('image successfully fetched'));
+    // });
+
+    // async function catchImages(e, i) {
+    //   const response = await fetch(`assets/screenshots/adrift_inst_${i+1}.jpg`);
+    //   // console.log(response.url);
+    //   e.src = response.url;
+    //   // const blob = await response.blob();
+    //   // e.src = URL.createObjectURL(blob);
+    // }
+
+    const swiper = new Swiper('.swiper-container', {
+      lazy: true,
+      pagination: {
+        el: '.swiper-pagination',
+      },
+      // navigation: {
+      //   nextEl: '.swiper-button-next',
+      //   prevEl: '.swiper-button-prev',
+      // },
+    });
+    // console.log(swiper);
+    
+    const getSiblings = (elem) => {
+      let siblings = [];
+      let sibling = elem.parentNode.firstChild;
+      while (sibling) {
+        if (sibling.nodeType === 1 && sibling !== elem) {
+          siblings.push(sibling);
         }
-      });
-    });
-
-    const imageElements = document.querySelectorAll('.content-img');
-    imageElements.forEach((e, i) => {
-      catchImages(e, i).then(response => console.log('image successfully fetched'));
-    });
-
-    async function catchImages(e, i) {
-      const response = await fetch(`assets/screenshots/adrift_inst_${i+1}.jpg`);
-      // console.log(response.url);
-      const blob = await response.blob();
-      e.src = URL.createObjectURL(blob);
+        sibling = sibling.nextSibling
+      }
+      return siblings;
     }
 
   }
@@ -451,21 +438,28 @@ const appController = ((textC, uiC) => {
     
     let html = `
       <div class="steps" id=${emptyIndex}>
-        <p class="step-item dir"> ${obj.lstSteps[emptyIndex]} </p>
-        <p class="step-item dir"> ${obj.questions[emptyIndex]} </p>
+
+        <div class="step-item">
+          <p> ${obj.lstSteps[emptyIndex]} </p>
+          <p> ${obj.questions[emptyIndex]} </p>
+        </div>
+
         <div class="step-item">
           <button class="button record-button" disabled> <i class="material-icons md-size">fiber_manual_record</i> </button>
           <button class="button stop-button" disabled> <i class="material-icons md-size">stop</i> </button>
         </div>
+
         <div class="step-item">
-          <audio class="audio-player hidden" controls></audio>
+          <audio class="audio-player" controls></audio>
         </div>
-        <div class="step-item download-div">
+
+        <div class="step-item downloader">
           <p> If you want to record another voice regarding current step, download just recorded one below before preceeding </p>
           <a class="download-link"> <i class="material-icons md-size"> save_alt </i> </a>
         </div>
+
       </div>
-      <button class="button txt next-button" disabled route="/steps">
+      <button class="button txt next-button" disabled>
         ${emptyIndex == obj.records.length - 1 ? `Finish` : `Next`}
       </button>
     `;
@@ -475,7 +469,7 @@ const appController = ((textC, uiC) => {
     const recordBtn = document.querySelector('.record-button');
     const stopBtn = document.querySelector('.stop-button');
     const audio = document.querySelector('.audio-player');
-    const downloadDiv = document.querySelector('.download-div');
+    const downloader = document.querySelector('.downloader');
     const downloadLink = document.querySelector('.download-link');
     const nextBtn = document.querySelector('.next-button');
 
@@ -503,12 +497,10 @@ const appController = ((textC, uiC) => {
       nextBtn.disabled = false;
       // console.log(obj);
       // e.data contains a blob representing the recording
-      audio.classList.remove('hidden');
+      audio.style.display = "block";
       audio.src = URL.createObjectURL(e.data);
       // audio.play();
-      downloadDiv.style.display = "block";
-      // downloadLink.classList.remove('empty');
-      // downloadLink.innerHTML = '<i class="material-icons md-size">save_alt</i>';
+      downloader.style.display = "block";
       downloadLink.href = URL.createObjectURL(e.data);
       downloadLink.download = `adrift_${obj.dest}_step_${emptyIndex + 1}.wav`;
     }
@@ -553,28 +545,35 @@ const appController = ((textC, uiC) => {
 
     let html = `
       <div class="preview">
-        <div class="preview-item"> Forget about ${obj.dest} </div>
-        <ul class="preview-item list org">
+
+        <div class="preview-item">
+          <p>Forget about ${obj.dest}</p>
+        </div>
+
+        <ul class="preview-item list">
           ${Array(obj.srcSteps.length).fill().map((item, i) => `
           <li class="preview-list-item"> ${obj.srcSteps[i]} </li>
           `).join('')}
         </ul>
+
         <ul class="preview-item list">
           ${Array(obj.lstSteps.length).fill().map((item, i) => `
           <li class="preview-list-item"> ${obj.lstSteps[i]} </li>
           `).join('')}
         </ul>
-        <ul class="preview-item list boxes">
+
+        <ul class="preview-item list">
           ${Array(obj.records.length).fill().map((item, i) => `
             ${obj.records[i] == null
-              ? `<li class="preview-list-item box empty"> <i class="material-icons"> check_box_outline_blank </i> </li>`
-              : `<li class="preview-list-item box"> <a class="download-link"> <i class="material-icons"> save_alt </i> </a> </li>`
+              ? `<li class="preview-list-item empty"> <i class="material-icons"> check_box_outline_blank </i> </li>`
+              : `<li class="preview-list-item"> <a class="download-link"> <i class="material-icons"> save_alt </i> </a> </li>`
             }
           `).join('')}
         </ul>
+
       </div>
-      <button class="button delete-button" route="/steps"> <i class="material-icons md-size">delete</i> </button>
-      <button class="button txt start-button" disabled route="/steps">
+      <button class="button delete-button"> <i class="material-icons md-size">delete</i> </button>
+      <button class="button txt start-button" disabled>
         ${(() => {
           if (obj.records.every(e => e == undefined)) {
             return 'Start Drift'
@@ -624,10 +623,10 @@ const appController = ((textC, uiC) => {
     DOM.section.classList.add('comp', 'new-comp');
 
     let html = `
-      <textarea class="textarea" type="text" value="none" placeholder="Paste the directions text here or tap the bottom right 🡦\n\nTo paste a sample directions text tap the bottom left 🡧"></textarea>
+      <textarea class="textarea" type="text" value="none" placeholder="Paste the directions text here or tap the bottom right &#x25E2;\n\nTo paste a sample directions text tap the bottom left &#x25E3;"></textarea>
       <button class="paste-button sample"> <i class="material-icons md-size">format_list_numbered</i> </button>
       <button class="paste-button clip"> <i class="material-icons md-size">content_paste</i> </button>
-      <button class="button txt lost-button" disabled route="/driftpreview"> Get Lost </button>
+      <button class="button txt lost-button" disabled> Get Lost </button>
     `;
     DOM.section.innerHTML = html;
 
@@ -752,7 +751,7 @@ To see this route visit https://maps.app.goo.gl/55hdYLAKswbuFAP46`;
           </p>
         </div>
       `).join('')}
-      <button class="button add-button" route="/newdrift">
+      <button class="button add-button">
         <i class="material-icons md-size"> add </i>
       </button>
     `;
@@ -779,10 +778,26 @@ To see this route visit https://maps.app.goo.gl/55hdYLAKswbuFAP46`;
 
   // ------------------------------------------------------------------------------------------- 🡧
 
+  const loaderAnim = () => {
+    window.addEventListener('load', () => {
+      document.querySelector('.loader').className += " hidden";
+    });
+  }
+
+  const preventer = () => {
+    console.log('prevented');
+    
+    window.addEventListener('beforeunload', (e) => {
+      e.preventDefault();
+      e.returnValue = 'whaaaaat!?';
+    });
+  }
+
+  // ------------------------------------------------------------------------------------------- 🡧
+  
   return {
     init: () => {
       console.log("app started..");
-      // setupRouter();
       loaderAnim();
       preventer();
       headerHandler();
@@ -794,14 +809,7 @@ To see this route visit https://maps.app.goo.gl/55hdYLAKswbuFAP46`;
       return data
     }
   }
-
   
 })(textController, uiController);
 
-
 appController.init();
-
-
-
-
-

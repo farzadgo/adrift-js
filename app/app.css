@@ -1,14 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Lekton:wght@400;700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Lekton:wght@400;700&display=swap'); */
+/* -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%); */
 
-:root {
-  --header-height: 80px;
-  --padding-one: 20px;
-  --add-btn-size: 90px;
-  --btn-height: 80px;
-  --font-size-big: 1.6rem;
-  --font-size-med: 1.2rem;
-  --font-size-sml: 1.0rem;
-}
 * {
   margin: 0;
   padding: 0;
@@ -26,16 +20,7 @@ body {
   #ffffff 57.14%, #ffffff 100%);
   background-size: 10px 10px;
 }
-.material-icons.md-size {
-  font-size: 32px;
-  text-rendering: optimizeLegibility;
-}
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-thumb {
-  background-color: #BEBEBE;
-  border: 2px solid transparent;
-  background-clip: content-box;
-}
+
 /* IMPORTANT for target */
 button > *, a > * { pointer-events: none; }
 
@@ -50,7 +35,7 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
   position: relative;
   background-color: white;
   height: calc(100vh - 100px);
-  width: 520px;
+  width: 560px;
   top: 40px;
   left: 50%;
   transform: translateX(-50%);
@@ -73,7 +58,7 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
   transform: scale(0.4) translate(-50%, -50%);
 }
 .loader.hidden {
-  animation: fadeOut 1.5s;
+  animation: fadeOut 2s;
   animation-fill-mode: forwards;
 }
 @keyframes fadeOut {
@@ -126,7 +111,7 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
   position: relative;
   top: 0.2em;
   font-family: "Material Icons";
-  font-size: 24px;
+  font-size: 30px;
   font-weight: 400;
 }
 .menu-title span[data-before]::before {
@@ -135,26 +120,74 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
 .menu-content {
   border-top: 1px solid white;
   margin-bottom: calc(var(--padding-one) * 2);
-  /* padding-bottom: 30px; */
 }
 .content-text {
   display: block;
   margin-top: var(--padding-one);
   color: inherit;
-  line-height: 1.4em;
+  line-height: 1.6em;
+  font-weight: normal;
 }
 .content-text.external::after {
   content: "launch";
   color: darkcyan;
 }
-.content-img {
-  position: relative;
-  width: 80%;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-top: 10px;
+.content-text.external:nth-child(4)::after {
+  content: "save_alt";
 }
 
+.swiper-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+}
+.swiper-container.hidden {
+  display: none;
+}
+.swiper-slide {
+  /* text-align: center; */
+  font-size: 18px;
+  background: white;
+  /* color: white; */
+
+  /* Center slide text vertically */
+  /* display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center; */
+}
+.swiper-slide img {
+  position: absolute;
+  width: auto;
+  height: auto;
+  max-width: 60%;
+  max-height: 100%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid black;
+  box-shadow: 5px 5px 0 black;
+}
+.swiper-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 4;
+  cursor: pointer;
+  height: var(--header-height);
+  width: var(--header-height);
+  border: 0;
+  background-color: transparent;
+}
 
 /* --------------------- Header Component --------------------- */
 .header {
@@ -201,6 +234,10 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
   height: calc(100% - var(--header-height));
   padding: var(--padding-one);
   padding-top: 0;
+  font-size: var(--font-size-med);
+}
+.comp > * p {
+  line-height: 1.8em;
 }
 .button {
   position: relative;
@@ -232,7 +269,6 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
 /* --------------------- List Comp --------------------- */
 .list-comp {
   overflow-y: auto;
-  font-size: var(--font-size-med);
 }
 .list-message {
   position: relative;
@@ -248,9 +284,6 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
   padding: 15px;
   box-shadow: 5px 5px 0 black;
   cursor: pointer;
-}
-.list-item p, .list-message p {
-  line-height: 1.6em;
 }
 .item-title {
   color: crimson;
@@ -276,10 +309,10 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
   padding: 10px;
   resize: none;
   overflow-y: auto;
-  font-size: var(--font-size-sml);
+  font-size: 0.8em;
   font-weight: normal;
   font-family: 'Consolas', monospace;
-  line-height: 1.4em;
+  line-height: 1.6em;
 }
 .textarea:focus {
   outline: none;
@@ -313,31 +346,29 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
   height: calc(100% - var(--btn-height) - var(--padding-one));
   margin-bottom: var(--padding-one);
   overflow-y: auto;
-  font-size: var(--font-size-med);
 }
-.preview-item, .step-item {
+/* ---------------------------------- */
+.preview-item {
   margin-bottom: var(--padding-one);
 }
-
 .preview-item.list {
   list-style: none;
   font-size: var(--font-size-sml);
-  width: 45%;
+  width: 46%;
   float: left;
 }
-.preview-item.org {
+.preview-item:nth-child(2) {
   color: crimson;
+  padding-right: 5px;
 }
-.preview-item.boxes {
+.preview-item:nth-child(4) {
   float: right;
-  width: 10%;
+  width: 8%;
+  text-align: right;
 }
 .preview-list-item {
-  line-height: 1.4em;
-  height: 36px;
-}
-.preview-list-item.box {
-  text-align: center;
+  line-height: 1em;
+  height: 42px;
 }
 .preview-list-item.empty {
   color: #9c9c9c;
@@ -348,7 +379,7 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
 .preview-list-item i {
   display: block;
   position: relative;
-  top: -0.2em;
+  top: -0.4em;
   font-size: 24px;
 }
 .start-button {
@@ -362,12 +393,15 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
 .delete-button:hover {
   background-color: crimson;
 }
-
-.step-item.dir {
-  font-size: var(--font-size-big);
-  line-height: 1.4em;
+/* ---------------------------------- */
+.step-item {
+  margin-bottom: calc(var(--padding-one) * 1.5);
 }
-.step-item:nth-child(3) {
+.step-item:first-child p {
+  font-size: var(--font-size-big);
+  margin-bottom: var(--padding-one);
+}
+.step-item:nth-child(2) {
   text-align: center;
 }
 .record-button, .stop-button {
@@ -379,18 +413,15 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
   color: white;
 }
 .audio-player {
+  display: none;
   width: 100%;
 }
-.audio-player.hidden {
-  display: none;
-}
-.download-div {
+.step-item.downloader {
   display: none;
   text-align: center;
   font-size: var(--font-size-sml);
-  line-height: 1.8em;
 }
-.download-div .download-link {
+.downloader .download-link {
   display: block;
   margin-top: 10px;
   color: inherit;
@@ -399,22 +430,40 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
   width: 100%;
 }
 
+/* ===================== For Destktop =================== */
+@media (min-width: 620px) {
+  :root {
+    --header-height: 80px;
+    --padding-one: 20px;
+    --add-btn-size: 90px;
+    --btn-height: 80px;
+    --font-size-big: 1.6rem;
+    --font-size-med: 1.3rem;
+    --font-size-sml: 1.1rem;
+  }
+  .material-icons.md-size { font-size: 36px; }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-thumb {
+    background-color: #BEBEBE;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+}
 
 /* ===================== For Mobile =================== */
-@media (max-width: 600px) {
-
+@media (max-width: 620px) {
   :root {
-    --header-height: 70px;
-    --padding-one: 20px;
-    --add-btn-size: 70px;
+    --header-height: 65px;
+    --padding-one: 15px;
+    --add-btn-size: 65px;
     --btn-height: 60px;
-    --font-size-big: 1.4rem;
-    --font-size-med: 1.1rem;
-    --font-size-sml: 0.9rem;
+    --font-size-big: 1.3rem;
+    --font-size-med: 1.0rem;
+    --font-size-sml: 0.85rem;
   }
-  .material-icons.md-size {
-    font-size: 28px;
-  }
+  .material-icons.md-size { font-size: 24px; }
+
   .container {
     position: fixed;
     top: 0;
@@ -424,11 +473,14 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
     width: 100%;
     border: 0;
   }
-  .loader img {
-    top: 45%;
+  .swiper-container {
+    height: calc(100vh - var(--header-height));
   }
   .comp {
     height: calc(100vh - var(--header-height) - 60px);
+  }
+  .textarea {
+    font-size: 0.7em;
   }
   .button:hover {
     border: 0;
@@ -437,5 +489,8 @@ input, textarea, button, select, a { -webkit-tap-highlight-color: transparent; }
   }
   .paste-button {
     bottom: calc(var(--btn-height) + var(--padding-one) * 2 + 60px);
+  }
+  .menu-title span::before, .content-text.external::after {
+    font-size: 24px;
   }
 }

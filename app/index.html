@@ -6,13 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="theme-color" content="black" />
-    <meta name="description" content="Adrift is a front-end single page application written in vanilla Javascrip. Adrift application is based on theories connected to the Situationist Internation. It takes the direction text from Maps, deconstructs it and enables one to to get lost in the city.">
+    <meta name="description" content="Adrift is a front-end single page application written in vanilla Javascrip. Adrift deconstructs Google Maps direction text and by doing so it offers a new set of directions based on the first one, thus it enables the performers to get lost in their very own environment.">
+
     <link rel="shortcut icon" type="image/ico" href="./assets/favicon.ico">
     <link rel="icon apple-touch-icon" type="image/png" sizes="128x128" href="./assets/favicon-128x128.png">
     <link rel="icon" type="image/png" sizes="96x96" href="./assets/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png">
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lekton:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css"> -->
+    <link rel="stylesheet" href="../node_modules/swiper/css/swiper.min.css">
     <link rel="stylesheet" href="app.css">
     <title>adrift</title>
   </head>
@@ -25,6 +30,55 @@
         <img src="./assets/adrift_logo_w.png" alt="loader">
       </div>
 
+      <div class="swiper-container">
+        <button class="swiper-close"> <i class="material-icons md-size">close</i> </button>
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img data-src="assets/screenshots/adrift_inst_1.jpg" class="swiper-lazy">
+            <div class="swiper-lazy-preloader"></div>
+          </div>
+          <div class="swiper-slide">
+            <img data-src="assets/screenshots/adrift_inst_2.jpg" class="swiper-lazy">
+            <div class="swiper-lazy-preloader"></div>
+          </div>
+          <div class="swiper-slide">
+            <img data-src="assets/screenshots/adrift_inst_3.jpg" class="swiper-lazy">
+            <div class="swiper-lazy-preloader"></div>
+          </div>
+          <div class="swiper-slide">
+            <img data-src="assets/screenshots/adrift_inst_4.jpg" class="swiper-lazy">
+            <div class="swiper-lazy-preloader"></div>
+          </div>
+          <div class="swiper-slide">
+            <img data-src="assets/screenshots/adrift_inst_5.jpg" class="swiper-lazy">
+            <div class="swiper-lazy-preloader"></div>
+          </div>
+          <div class="swiper-slide">
+            <img data-src="assets/screenshots/adrift_inst_6.jpg" class="swiper-lazy">
+            <div class="swiper-lazy-preloader"></div>
+          </div>
+          <div class="swiper-slide">
+            <img data-src="assets/screenshots/adrift_inst_7.jpg" class="swiper-lazy">
+            <div class="swiper-lazy-preloader"></div>
+          </div>
+          <div class="swiper-slide">
+            <img data-src="assets/screenshots/adrift_inst_8.jpg" class="swiper-lazy">
+            <div class="swiper-lazy-preloader"></div>
+          </div>
+          <div class="swiper-slide">
+            <img data-src="assets/screenshots/adrift_inst_9.jpg" class="swiper-lazy">
+            <div class="swiper-lazy-preloader"></div>
+          </div>
+          <div class="swiper-slide">
+            <img data-src="assets/screenshots/adrift_inst_10.jpg" class="swiper-lazy">
+            <div class="swiper-lazy-preloader"></div>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <!-- <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div> -->
+      </div>
+
       <div class="header">
         <a class="header-item header-left"></a>
         <a class="header-item header-right"></a>
@@ -33,80 +87,55 @@
       <div class="menu">
 
         <div class="menu-item">
-          <a class="menu-title"><span data-before="keyboard_arrow_right">Instructions</span></a>
-          <div class="menu-content" hidden>
-            <p class="content-text"> Begin with Google Maps. Search for any locations that comes to your mind. </p>
-            <img class="content-img" src="./assets/placehopder.jpg" alt="">
-            <img class="content-img" src="./assets/placehopder.jpg" alt="">
-            <img class="content-img" src="./assets/placehopder.jpg" alt="">
-            <p class="content-text"> Find out about the direction that Maps offers to you. </p>
-            <img class="content-img" src="./assets/placehopder.jpg" alt="">
-            <p class="content-text"> Look for sharing the selected <u>walking</u> directions. </p>
-            <img class="content-img" src="./assets/placehopder.jpg" alt="">
-            <p class="content-text"> Tap on ⋮ to find the <u>Share directions</u>. <p>
-            <img class="content-img" src="./assets/placehopder.jpg" alt="">
-            <p class="content-text"> Among the offered apps find and tap <u>Copy to clipboar</u>. </p>
-            <img class="content-img" src="./assets/placehopder.jpg" alt="">
-            <p class="content-text"> Open <u>adrift.digital</u> in your browser and tap on ＋ to add a new drift. </p>
-            <img class="content-img" src="./assets/placehopder.jpg" alt="">
-            <p class="content-text"> <u>Paste</u> the shared directions from the clipboard (you can also tap on the paste button to the buttom right) <br> If you haven't done the previous steps, you can paste a sample directions text by tapping on the button to the buttom left. </p>
-            <img class="content-img" src="./assets/placehopder.jpg" alt="">
-            <p class="content-text"> After pasting the directions text, tap on the <u>Get Lost</u>. </p>
-            <img class="content-img" src="./assets/placehopder.jpg" alt="">
-            <p class="content-text"> Btw, you can also type a simple Maps direction text manually :) The image following shows a simple acceptable syntax. </p>
-            <img class="content-img" src="./assets/placehopder.jpg" alt="">
-            <p class="content-text"> After previewing the new directions tap on the <u>Start Drift</u> to start drifting in the city. </p>
-            <img class="content-img" src="./assets/placehopder.jpg" alt="">
-            <p class="content-text"> Follow the directions, answer the questions at each step in form of conversation with your friends about issue and the surrounding. Have fun and follow your intuitions :) <br> Record your conversations by tapping on the <u>Record button</u> (circle). </p>
-            <img class="content-img" src="./assets/placehopder.jpg" alt="">
-            <p class="content-text"> Stop the recording session by tapping on the <u>Stop button</u> (square). </p>
-            <img class="content-img" src="./assets/placehopder.jpg" alt="">
-            <p class="content-text"> Before tapping the <u>Next button</u> in order to proceed, you can download your recording by taping on the download button. This is helpful if you desire to perform another recording, as the page saves only the latest recording. </p>
-            <img class="content-img" src="./assets/placehopder.jpg" alt="">
-            <img class="content-img" src="./assets/placehopder.jpg" alt="">
-            <p class="content-text"> Tap on <u>Finish</u> button at the final step. The directions and recording stuff are done, yet continue to your drift, discovery and imagination. </p>
-            <img class="content-img" src="./assets/placehopder.jpg" alt="">
-            <p class="content-text"> On the preview page you can download all the recording you've done so far. </p>
-            <img class="content-img" src="./assets/placehopder.jpg" alt="">
-            <p class="content-text"> Finally, on the first page, you can see the drifts performed both compelted and uncompleted ones. Tap on any of them to preview the completed steps, download the recordings and delete the drifts. </p>
-            <img class="content-img" src="./assets/placehopder.jpg" alt="">
-            <img class="content-img" src="./assets/placehopder.jpg" alt="">
-            <img class="content-img" src="./assets/placehopder.jpg" alt="">
-          </div>
+          <a class="menu-title"><span data-before="">Instructions</span></a>
         </div>
 
         <div class="menu-item">
-          <a class="menu-title"><span data-before="keyboard_arrow_right">About the project</span></a>
+          <a class="menu-title"><span data-before="">About adrift</span></a>
           <div class="menu-content" hidden>
-            <h1 class="content-text">adrift</h1>
             <p class="content-text"><i>Mapping repressed topographies</i></p>
             <p class="content-text">
-              By keeping us in [digital] space, mobile devices and technologies like Google Maps hinder the potential of constructing meaning in the city. Using the same infrastructure, Adrift app constructs situations by deconstructing the imposed directional text to bring back the possibility of getting lost in the urban fabric. By doing so, it aims to map the disparate, repressed or unavailable topographies and revive the [missing] spatial experiments of everyday life.
+              Adrift deconstructs Google Maps direction text** and by doing so it offers a new set of directions based on the original one, thus it enables the performers to get lost in their very own environment. "Getting lost" refers to the perception of the urban fabric in a different way than what we usually experienc in <b>everyday life</b>.
             </p>
-
+            <p class="content-text">
+              During the walk (or run, play, etc.) to nowhere, the performers are being asked a set of questions regarding the surrounding and offered the opportunity to record the answers in the form of conversations between them, hoping to initiate another level of observation and meaning-making through the act of walking and mapping.
+            </p>
+            <p class="content-text">
+              **<i>The mentioned Google Maps direction text (generated by the Maps directions API) is accessible by sharing the selected walking direction to the searched location on Maps mobile app (See the instructions).</i>
+            </p>
           </div>
         </div>
 
         <div class="menu-item">
-          <a class="menu-title"><span data-before="keyboard_arrow_right">Development and the app</span></a>
+          <a class="menu-title"><span data-before="">Development</span></a>
           <div class="menu-content" hidden>
             <p class="content-text">
               Adrift is a front-end single page application (SPA) written in vanilla Javascript. 
             </p>
             <p class="content-text">
-              The applications data storage is currently sessionStorage, which means after the page is reload the data will be cleaned. Another method for saving data including media files (voice recordings (blobs) here) is to use cloud services, yet regarding data privacy issues and concerns, it is prefered to use client-side storage (permenatly on the device storage by downloading and temporarily on the browser with Web Storage). Hence, to save the voice recordings on the devices by tapping/clicking on specifed download buttons, is to save the drifts.
+              Adrift uses modern web API such as MediaStream Recording API and Clipboard API, which currently are not supported by iOS devices.
             </p>
             <p class="content-text">
-              Unlike sessionStorage, localStorage can rather keep simple data (here directions, steps, orders) for later visit of the page whick can be implemented in later versions.        
-            </p>
-            <p class="content-text">
-              Adrift uses modern web API such as MediaStream Recording API and Clipboard API, which currently are not supported by iOS devices.    
+              The applications data storage is sessionStorage, which means after the page is reload the data will be cleaned. A frequent method for saving data (including media files) is to use cloud services, yet regarding data privacy issues it is prefered to use client-side storage. Hence, it is possible to save the drifts by saving the recordings and to do so by tapping on specifed download buttons.
             </p>
           </div>
         </div>
 
         <div class="menu-item">
-          <a class="menu-title"><span data-before="keyboard_arrow_right">External Links</span></a>
+          <a class="menu-title"><span data-before="">Theoretical background</span></a>
+          <div class="menu-content" hidden>
+            <p class="content-text"><i>The app and its intended drifts are based on the concepts of "Psychogeography" and "Dérive".</i></p>
+            <p class="content-text">
+              <b>Psychogeography</b>.
+            </p>
+            <p class="content-text">
+              <b>Dérive</b>.
+            </p>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <a class="menu-title"><span data-before="">External Links</span></a>
           <div class="menu-content" hidden>
             <a href="https://github.com/farzadgo/adrift" class="content-text external" target="_blank"> Source code - Gitgub </a>
             <a href="http://digitalmedia-bremen.de/" class="content-text external" target="_blank"> Digital Media Bremen </a>
@@ -124,6 +153,8 @@
     </div>
   </body>
 
+  <!-- <script src="https://unpkg.com/swiper/js/swiper.min.js"></script> -->
+  <script src="../node_modules/swiper/js/swiper.min.js"></script>
   <script src="app.js"></script>
 
 </html>
