@@ -785,8 +785,6 @@ To see this route visit https://maps.app.goo.gl/55hdYLAKswbuFAP46`;
   }
 
   const preventer = () => {
-    console.log('prevented');
-    
     window.addEventListener('beforeunload', (e) => {
       e.preventDefault();
       e.returnValue = 'whaaaaat!?';
@@ -794,7 +792,7 @@ To see this route visit https://maps.app.goo.gl/55hdYLAKswbuFAP46`;
   }
 
   // ------------------------------------------------------------------------------------------- 🡧
-  
+
   return {
     init: () => {
       console.log("app started..");
