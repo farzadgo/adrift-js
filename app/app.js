@@ -263,7 +263,8 @@ const uiController = (() => {
     menuTitles: document.querySelectorAll('.menu-title'),
     header: document.querySelector('.header'),
     headerRight: document.querySelector('.header-right'),
-    headerLeft: document.querySelector('.header-left')
+    headerLeft: document.querySelector('.header-left'),
+    swiper: document.querySelector('.swiper-container')
   }
 
   return {
@@ -340,15 +341,10 @@ const appController = ((textC, uiC) => {
 
     const swiperContainer = document.querySelector('.swiper-container');
     const swiperCloseBtn = document.querySelector('.swiper-close');
-    const hideSwiper = () => {
-      swiperContainer.classList.add('hidden')
-    };
-    setTimeout(hideSwiper, 100);
 
-    // SWIPER CLOSE BTN LISTENER
-    swiperCloseBtn.addEventListener('click', () => {
-      hideSwiper();
-    });
+    // HIDE SWIPER
+    const hideSwiper = () => swiperContainer.classList.add('hidden');
+    setTimeout(hideSwiper, 100);
 
     // MENU ITEMS LISTENERS
     DOM.menuTitles.forEach((el, i) => {
@@ -372,33 +368,9 @@ const appController = ((textC, uiC) => {
       }
     });
 
-    // gridElements.forEach((e, i) => {
-    //   e.addEventListener('click', e => {
-    //     console.log(e.target, i);
-    //     catchImages(e.target, i);
-    //     // display block sth like loader >> for the lightbox ;)`
-    //   });
-    // });
-
-    // imageElements.forEach((e, i) => {
-    //   catchImages(e, i).then(response => console.log('image successfully fetched'));
-    // });
-
-    // async function catchImages(e, i) {
-    //   const response = await fetch(`assets/screenshots/adrift_inst_${i+1}.jpg`);
-    //   // console.log(response.url);
-    //   e.src = response.url;
-    //   // const blob = await response.blob();
-    //   // e.src = URL.createObjectURL(blob);
-    // }
-
-    const swiper = new Swiper('.swiper-container', {
-      preloadImages: false,
-      lazy: true,
-      pagination: {
-        el: '.swiper-pagination',
-        type: 'progressbar',
-      }
+    // SWIPER CLOSE BTN LISTENER
+    swiperCloseBtn.addEventListener('click', () => {
+      hideSwiper();
     });
     
     const getSiblings = (elem) => {
@@ -414,10 +386,113 @@ const appController = ((textC, uiC) => {
     }
 
   }
+
+
+  // ------------------------------------------------------------------------------------------- 🡧
+  const getSwiper = () => {
+
+    swiperHtml = `
+      <button class="swiper-close"> <i class="material-icons md-size">close</i> </button>
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img data-src="assets/screenshots/adrift_inst_1.jpg" class="swiper-lazy">
+          <div class="swiper-lazy-preloader"></div>
+          <p>In Maps you can long press any point to pin the location. Look for finding out about the related walking <u>directions</u>.</p>
+        </div>
+        <div class="swiper-slide">
+          <img data-src="assets/screenshots/adrift_inst_2.jpg" class="swiper-lazy">
+          <div class="swiper-lazy-preloader"></div>
+          <p>You can also <u>search</u> for a location and find its <u>walking</u> directions.<br>Tap on ⋮ to see the sharing options.</p>
+        </div>
+        <div class="swiper-slide">
+          <img data-src="assets/screenshots/adrift_inst_3.jpg" class="swiper-lazy">
+          <div class="swiper-lazy-preloader"></div>
+          <p>Tap on <u>Share directions</u> to access the directions text.</p>
+        </div>
+        <div class="swiper-slide">
+          <img data-src="assets/screenshots/adrift_inst_4.jpg" class="swiper-lazy">
+          <div class="swiper-lazy-preloader"></div>
+          <p>Among the offered apps and options tap on <u>Copy to clipboar</u>.</p>
+        </div>
+        <div class="swiper-slide">
+          <img data-src="assets/screenshots/adrift_inst_5.jpg" class="swiper-lazy">
+          <div class="swiper-lazy-preloader"></div>
+          <p>Open <u>adrift.digital</u> in your browser and tap on ＋ to initiate a drift.</p>
+        </div>
+        <div class="swiper-slide">
+          <img data-src="assets/screenshots/adrift_inst_6.jpg" class="swiper-lazy">
+          <div class="swiper-lazy-preloader"></div>
+          <p><u>Paste</u> the copied directions (you can also tap on the paste button to the buttom right).<br>If you haven't done the previous steps, you can paste a sample directions text by tapping on the button to the bottom left.</p>
+        </div>
+        <div class="swiper-slide">
+          <img data-src="assets/screenshots/adrift_inst_7.jpg" class="swiper-lazy">
+          <div class="swiper-lazy-preloader"></div>
+          <p> After pasting the directions text, tap on the <u>Get Lost</u>.</p>
+        </div>
+        <div class="swiper-slide">
+          <img data-src="assets/screenshots/adrift_inst_8.jpg" class="swiper-lazy">
+          <div class="swiper-lazy-preloader"></div>
+          <p>Btw, you can also type a simple Maps direction text manually :) The image shows a simple valid syntax.</p>
+        </div>
+        <div class="swiper-slide">
+          <img data-src="assets/screenshots/adrift_inst_9.jpg" class="swiper-lazy">
+          <div class="swiper-lazy-preloader"></div>
+          <p>After previewing the new directions tap on the <u>Start Drift</u> to start drifting in the city. </p>
+        </div>
+        <div class="swiper-slide">
+          <img data-src="assets/screenshots/adrift_inst_10.jpg" class="swiper-lazy">
+          <div class="swiper-lazy-preloader"></div>
+          <p>Follow the directions, answer the questions at each step in form of conversation with your friends concerning the surrounding. Have fun and follow your intuitions :)<br>Record your conversations by tapping on the <u>Record button</u>.</p>
+        </div>
+        <div class="swiper-slide">
+          <img data-src="assets/screenshots/adrift_inst_11.jpg" class="swiper-lazy">
+          <div class="swiper-lazy-preloader"></div>
+          <p>Stop the recording session by tapping on the <u>Stop button</u>.</p>
+        </div>
+        <div class="swiper-slide">
+          <img data-src="assets/screenshots/adrift_inst_12.jpg" class="swiper-lazy">
+          <div class="swiper-lazy-preloader"></div>
+          <p>Before tapping the <u>Next button</u> in order to proceed, you can download your recording by taping on the download button. This is helpful if you want to perform another recording, as the cache keeps only the latest recording.</p>
+        </div>
+        <div class="swiper-slide">
+          <img data-src="assets/screenshots/adrift_inst_13.jpg" class="swiper-lazy">
+          <div class="swiper-lazy-preloader"></div>
+          <p>Steps keep showing up...</p>
+        </div>
+        <div class="swiper-slide">
+          <img data-src="assets/screenshots/adrift_inst_14.jpg" class="swiper-lazy">
+          <div class="swiper-lazy-preloader"></div>
+          <p>Tap on <u>Finish</u> button at the final step. The directions and recording stuff are done, yet continue to your drift, discovery and imagination. </p>
+        </div>
+        <div class="swiper-slide">
+          <img data-src="assets/screenshots/adrift_inst_15.jpg" class="swiper-lazy">
+          <div class="swiper-lazy-preloader"></div>
+          <p> On the preview page you can download all the steps recordings you've done so far. </p>
+        </div>
+        <div class="swiper-slide">
+          <img data-src="assets/screenshots/adrift_inst_16.jpg" class="swiper-lazy">
+          <div class="swiper-lazy-preloader"></div>
+          <p>On the first page you can see the drifts list with access to their previews and download buttons.</p>
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    `;
+
+    DOM.swiper.innerHTML = swiperHtml;
+
+    const mySwiper = new Swiper('.swiper-container', {
+      preloadImages: false,
+      lazy: true,
+      pagination: {
+        el: '.swiper-pagination',
+        type: 'progressbar',
+      }
+    });
+
+  }
   
 
   // ------------------------------------------------------------------------------------------- 🡧
-
   const getSteps = (obj) => {
     console.log("getSteps");
     // console.log(obj.lstSteps);
@@ -794,6 +869,7 @@ To see this route visit https://maps.app.goo.gl/55hdYLAKswbuFAP46`;
       console.log("app started..");
       loaderAnim();
       preventer();
+      getSwiper();
       headerHandler();
       menuHandler();
       getList();
