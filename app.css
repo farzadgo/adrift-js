@@ -7,26 +7,6 @@
   padding: 0;
   box-sizing: border-box;
 }
-:root {
-  --header-height: 80px;
-  --padding-one: 20px;
-  --add-btn-size: 90px;
-  --btn-height: 80px;
-  --font-size-big: 1.6rem;
-  --font-size-med: 1.3rem;
-  --font-size-sml: 1.1rem;
-}
-.material-icons.md-size {
-  font-size: 36px;
-}
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-thumb {
-  background-color: #BEBEBE;
-  border: 2px solid transparent;
-  background-clip: content-box;
-}
 body {
   font-family: 'Lekton', 'Trebuchet MS', sans-serif;
   font-weight: 700;
@@ -45,6 +25,9 @@ button > *, a > * {
 }
 button:focus, audio:focus {
   outline: none;
+}
+a {
+  color: inherit;
 }
 a:link, a:visited, a:active {
   text-decoration: none;
@@ -131,12 +114,12 @@ input, textarea, button, select, a {
   top: 50%;
   transform: translateY(-50%);
 }
-.menu-title span::before, .content-text.external::after {
-  position: relative;
-  top: 0.2em;
+.menu-title span::before {
   font-family: "Material Icons";
   font-size: 30px;
   font-weight: 400;
+  position: relative;
+  top: 0.2em;
 }
 .menu-title span[data-before]::before {
   content: attr(data-before) " ";
@@ -148,14 +131,26 @@ input, textarea, button, select, a {
 .content-text {
   display: block;
   margin-top: calc(var(--padding-one) * 1.4);
-  color: inherit;
   line-height: 1.6em;
   font-weight: 400;
 }
+.content-text.quote {
+  font-size: var(--font-size-sml);
+  padding: 10px 10px 10px 15px;
+  border-left: 5px solid var(--theme-color);
+  background-color: #202020;
+}
+.content-text.quote i {
+  line-height: 0.1em;
+  font-size: 16px;
+  color: #9c9c9c;
+}
 .content-text.external::after {
   content: "launch";
-  color: dodgerblue;
-  font-size: 24px;
+  font-family: "Material Icons";
+  line-height: 0.1em;
+  font-size: 20px;
+  color: var(--theme-color);
 }
 .content-text.external:nth-child(4)::after {
   content: "save_alt";
@@ -276,8 +271,8 @@ input, textarea, button, select, a {
 }
 .button:hover {
   border: 0;
-  color: white;
-  background-color: black;
+  /* color: white; */
+  background-color: var(--theme-color);
 }
 .button[disabled] {
   pointer-events: none;
@@ -307,7 +302,7 @@ input, textarea, button, select, a {
   cursor: pointer;
 }
 .item-title {
-  color: crimson;
+  color: var(--theme-color);
 }
 .add-button {
   position: fixed;
@@ -326,7 +321,7 @@ input, textarea, button, select, a {
   height: calc(100% - var(--btn-height) - var(--padding-one));
   width: 100%;
   margin-bottom: var(--padding-one);
-  border: 1px solid #BEBEBE;
+  border: 2px solid #BEBEBE;
   padding: 10px;
   resize: none;
   overflow-y: auto;
@@ -336,7 +331,7 @@ input, textarea, button, select, a {
 }
 .textarea:focus {
   outline: none;
-  border: 1px solid crimson;
+  border: 2px solid var(--theme-color);
 }
 .paste-button {
   position: fixed;
@@ -378,7 +373,7 @@ input, textarea, button, select, a {
   float: left;
 }
 .preview-item:nth-child(2) {
-  color: crimson;
+  color: var(--theme-color);
   padding-right: 5px;
 }
 .preview-item:nth-child(4) {
@@ -392,9 +387,6 @@ input, textarea, button, select, a {
 }
 .preview-list-item.empty {
   color: #9c9c9c;
-}
-.preview-list-item a {
-  color: inherit;
 }
 .preview-list-item i {
   display: block;
@@ -411,6 +403,7 @@ input, textarea, button, select, a {
   float: left;
 }
 .delete-button:hover {
+  color: white;
   background-color: crimson;
 }
 /* ---------------------------------- */
@@ -445,12 +438,32 @@ input, textarea, button, select, a {
 .downloader .download-link {
   display: block;
   margin-top: 10px;
-  color: inherit;
 }
 .next-button {
   width: 100%;
 }
 
+
+/* ===================== For Mobile =================== */
+@media (min-width: 620px) {
+  :root {
+    --header-height: 80px;
+    --padding-one: 20px;
+    --add-btn-size: 90px;
+    --btn-height: 80px;
+    --font-size-big: 1.6rem;
+    --font-size-med: 1.3rem;
+    --font-size-sml: 1.1rem;
+    --theme-color: gold;
+  }
+  .material-icons.md-size { font-size: 36px; }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-thumb {
+    background-color: #BEBEBE;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+}
 
 /* ===================== For Mobile =================== */
 @media (max-width: 620px) {
@@ -462,9 +475,9 @@ input, textarea, button, select, a {
     --font-size-big: 1.3rem;
     --font-size-med: 1.0rem;
     --font-size-sml: 0.85rem;
+    --theme-color: gold;
   }
   .material-icons.md-size { font-size: 24px; }
-
   .container {
     position: fixed;
     top: 0;
@@ -474,21 +487,14 @@ input, textarea, button, select, a {
     width: 100%;
     border: 0;
   }
-  .comp {
-    height: calc(100vh - var(--header-height) - 60px);
-  }
-  .textarea {
-    font-size: 0.7em;
-  }
+  .comp { height: calc(100vh - var(--header-height) - 60px); }
+  .textarea { font-size: 0.7em; }
   .button:hover {
     border: 0;
     color: #9c9c9c;
     background: #f0f0f0;
   }
-  .paste-button {
-    bottom: calc(var(--btn-height) + var(--padding-one) * 2 + 60px);
-  }
-  .menu-title span::before, .content-text.external::after {
-    font-size: 18px;
-  }
+  .paste-button { bottom: calc(var(--btn-height) + var(--padding-one) * 2 + 60px); }
+  .menu-title span::before { font-size: 20px; }
+  .content-text.external::after { font-size: 16px; }
 }
