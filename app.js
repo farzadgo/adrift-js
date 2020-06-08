@@ -372,7 +372,6 @@ const appController = ((textC, uiC) => {
       }
     });
 
-
     // gridElements.forEach((e, i) => {
     //   e.addEventListener('click', e => {
     //     console.log(e.target, i);
@@ -394,16 +393,13 @@ const appController = ((textC, uiC) => {
     // }
 
     const swiper = new Swiper('.swiper-container', {
+      preloadImages: false,
       lazy: true,
       pagination: {
         el: '.swiper-pagination',
-      },
-      // navigation: {
-      //   nextEl: '.swiper-button-next',
-      //   prevEl: '.swiper-button-prev',
-      // },
+        type: 'progressbar',
+      }
     });
-    // console.log(swiper);
     
     const getSiblings = (elem) => {
       let siblings = [];
