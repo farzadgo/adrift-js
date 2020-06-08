@@ -1,6 +1,4 @@
-
 // xoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxo TEXT INTERPRETTER
-
 
 const textController = (() => {
 
@@ -15,7 +13,6 @@ const textController = (() => {
       });
       return destArr.join(' ')
     }
-
 
     const getOrgDirs = (arr) => {
       let dirArr = [];
@@ -47,7 +44,6 @@ const textController = (() => {
         dirStr: dirStr
       }
     }
-
 
     const getNewDirs = (arr) => {
       let dirArr = [];
@@ -194,7 +190,6 @@ const textController = (() => {
     }
   }
   
-
   const addDrift = (inp) => {
     const dirObj = deconstructor(inp);
 
@@ -226,7 +221,6 @@ const textController = (() => {
     }
   }
 
-
   const Drift = function(id, date, dest, stp, stp_, qs, rs) {
     this.id = id;
     this.date = date;
@@ -250,9 +244,7 @@ const textController = (() => {
 
 })();
 
-
 // xoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxo UI CONTROLLER
-
 
 const uiController = (() => {
 
@@ -275,9 +267,7 @@ const uiController = (() => {
   
 })();
 
-
 // xoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxo MAIN CONTROLLER
-
 
 const appController = ((textC, uiC) => {
 
@@ -299,8 +289,8 @@ const appController = ((textC, uiC) => {
     getList();
   }
 
+  // -------------------------------------------------------------------------------------------
 
-  // ------------------------------------------------------------------------------------------- 🡧
   const headerHandler = () => {
 
     DOM.headerRight.innerHTML = '<i class="material-icons md-size"> menu </i>';
@@ -335,44 +325,34 @@ const appController = ((textC, uiC) => {
 
   }
 
+  // -------------------------------------------------------------------------------------------
 
-  // ------------------------------------------------------------------------------------------- 🡧
   const menuHandler = () => {
-
-    const swiperContainer = document.querySelector('.swiper-container');
-    const swiperCloseBtn = document.querySelector('.swiper-close');
-
-    // HIDE SWIPER
-    const hideSwiper = () => swiperContainer.classList.add('hidden');
-    setTimeout(hideSwiper, 100);
 
     // MENU ITEMS LISTENERS
     DOM.menuTitles.forEach((el, i) => {
       if (i !== 0) {
         el.addEventListener('click', e => {
           const titleSpan = e.target.firstChild;
-          const menuContent = e.target.nextElementSibling;
+          const content = e.target.nextElementSibling;
           const siblings = getSiblings(e.target.parentNode);
-          if (menuContent.hidden == true) {
-            menuContent.hidden = false;
+          if (content.hidden == true) {
+            content.hidden = false;
             siblings.forEach(e => e.style.display = "none")
             titleSpan.dataset.before = "arrow_back";
           } else {
-            menuContent.hidden = true;
+            content.hidden = true;
             siblings.forEach(e => e.style.display = "block")
             titleSpan.dataset.before = " ";
           }
         });
       } else {
-        el.addEventListener('click', () => swiperContainer.classList.remove('hidden'));
+        el.addEventListener('click', () => {
+          DOM.swiper.classList.remove('hidden')
+        });
       }
     });
 
-    // SWIPER CLOSE BTN LISTENER
-    swiperCloseBtn.addEventListener('click', () => {
-      hideSwiper();
-    });
-    
     const getSiblings = (elem) => {
       let siblings = [];
       let sibling = elem.parentNode.firstChild;
@@ -387,8 +367,8 @@ const appController = ((textC, uiC) => {
 
   }
 
+  // -------------------------------------------------------------------------------------------
 
-  // ------------------------------------------------------------------------------------------- 🡧
   const getSwiper = () => {
 
     swiperHtml = `
@@ -397,12 +377,18 @@ const appController = ((textC, uiC) => {
         <div class="swiper-slide">
           <img data-src="assets/screenshots/adrift_inst_1.jpg" class="swiper-lazy">
           <div class="swiper-lazy-preloader"></div>
-          <p>In Maps you can long press any point to pin the location. Look for finding out about the related walking <u>directions</u>.</p>
+          <p>
+            In Maps you can long press any point to pin the location.
+            Look for finding out about the related walking <u>directions</u>.
+          </p>
         </div>
         <div class="swiper-slide">
           <img data-src="assets/screenshots/adrift_inst_2.jpg" class="swiper-lazy">
           <div class="swiper-lazy-preloader"></div>
-          <p>You can also <u>search</u> for a location and find its <u>walking</u> directions.<br>Tap on ⋮ to see the sharing options.</p>
+          <p>
+            You can also <u>search</u> for a location and find its <u>walking</u> directions.<br>
+            Tap on ⋮ to see the sharing options.
+          </p>
         </div>
         <div class="swiper-slide">
           <img data-src="assets/screenshots/adrift_inst_3.jpg" class="swiper-lazy">
@@ -422,7 +408,10 @@ const appController = ((textC, uiC) => {
         <div class="swiper-slide">
           <img data-src="assets/screenshots/adrift_inst_6.jpg" class="swiper-lazy">
           <div class="swiper-lazy-preloader"></div>
-          <p><u>Paste</u> the copied directions (you can also tap on the paste button to the buttom right).<br>If you haven't done the previous steps, you can paste a sample directions text by tapping on the button to the bottom left.</p>
+          <p>
+            <u>Paste</u> the copied directions (or tap on the paste button to the bottom right).<br>
+            If you haven't done the previous steps, you can paste a <u>sample</u> directions text by tapping on the button to the bottom left.
+          </p>
         </div>
         <div class="swiper-slide">
           <img data-src="assets/screenshots/adrift_inst_7.jpg" class="swiper-lazy">
@@ -432,17 +421,21 @@ const appController = ((textC, uiC) => {
         <div class="swiper-slide">
           <img data-src="assets/screenshots/adrift_inst_8.jpg" class="swiper-lazy">
           <div class="swiper-lazy-preloader"></div>
-          <p>Btw, you can also type a simple Maps direction text manually :) The image shows a simple valid syntax.</p>
+          <p>Btw, you can also type a Maps direction text manually 😉 The image shows a simple valid syntax.</p>
         </div>
         <div class="swiper-slide">
           <img data-src="assets/screenshots/adrift_inst_9.jpg" class="swiper-lazy">
           <div class="swiper-lazy-preloader"></div>
-          <p>After previewing the new directions tap on the <u>Start Drift</u> to start drifting in the city. </p>
+          <p>After previewing the new directions tap on the <u>Start Drift</u> to start drifting in the city.</p>
         </div>
         <div class="swiper-slide">
           <img data-src="assets/screenshots/adrift_inst_10.jpg" class="swiper-lazy">
           <div class="swiper-lazy-preloader"></div>
-          <p>Follow the directions, answer the questions at each step in form of conversation with your friends concerning the surrounding. Have fun and follow your intuitions :)<br>Record your conversations by tapping on the <u>Record button</u>.</p>
+          <p>
+            Follow the directions, answer the questions at each step in form of conversation with your
+            friends concerning the surrounding. Have fun and follow your intuitions.
+            Record your conversations by tapping on the <u>Record button</u>.
+          </p>
         </div>
         <div class="swiper-slide">
           <img data-src="assets/screenshots/adrift_inst_11.jpg" class="swiper-lazy">
@@ -452,7 +445,10 @@ const appController = ((textC, uiC) => {
         <div class="swiper-slide">
           <img data-src="assets/screenshots/adrift_inst_12.jpg" class="swiper-lazy">
           <div class="swiper-lazy-preloader"></div>
-          <p>Before tapping the <u>Next button</u> in order to proceed, you can download your recording by taping on the download button. This is helpful if you want to perform another recording, as the cache keeps only the latest recording.</p>
+          <p>
+            Before tapping the <u>Next button</u> in order to proceed, you can download your recording by taping on the download button.
+            This is helpful if you want to perform another recording, as the cache keeps only the latest recording.
+          </p>
         </div>
         <div class="swiper-slide">
           <img data-src="assets/screenshots/adrift_inst_13.jpg" class="swiper-lazy">
@@ -462,12 +458,15 @@ const appController = ((textC, uiC) => {
         <div class="swiper-slide">
           <img data-src="assets/screenshots/adrift_inst_14.jpg" class="swiper-lazy">
           <div class="swiper-lazy-preloader"></div>
-          <p>Tap on <u>Finish</u> button at the final step. The directions and recording stuff are done, yet continue to your drift, discovery and imagination. </p>
+          <p>
+            Tap on <u>Finish</u> button at the final step.
+            The directions and recording stuff are done, yet continue to your drift, discovery and imagination.
+          </p>
         </div>
         <div class="swiper-slide">
           <img data-src="assets/screenshots/adrift_inst_15.jpg" class="swiper-lazy">
           <div class="swiper-lazy-preloader"></div>
-          <p> On the preview page you can download all the steps recordings you've done so far. </p>
+          <p> On the preview page you can download all the steps recordings you've done so far.</p>
         </div>
         <div class="swiper-slide">
           <img data-src="assets/screenshots/adrift_inst_16.jpg" class="swiper-lazy">
@@ -489,10 +488,18 @@ const appController = ((textC, uiC) => {
       }
     });
 
-  }
-  
+    // HIDE SWIPER
+    setTimeout(() => DOM.swiper.classList.add('hidden'), 100);
 
-  // ------------------------------------------------------------------------------------------- 🡧
+    // CLOSE BUTTON HANDLER
+    document.querySelector('.swiper-close').addEventListener('click', () => {
+      DOM.swiper.classList.add('hidden');
+    });
+
+  }
+
+  // -------------------------------------------------------------------------------------------
+
   const getSteps = (obj) => {
     console.log("getSteps");
     // console.log(obj.lstSteps);
@@ -556,7 +563,8 @@ const appController = ((textC, uiC) => {
       console.log('recordig stopped');
       recordBtn.disabled = false;
       stopBtn.disabled = true;
-      // stopping the recorder will eventually trigger the `dataavailable` event and we can complete the recording process
+      // stopping the recorder will eventually trigger the 
+      // `dataavailable` event and we can complete the recording process
       recorder.stop();
     }
 
@@ -596,8 +604,7 @@ const appController = ((textC, uiC) => {
 
   }
 
-
-  // ------------------------------------------------------------------------------------------- 🡧
+  // -------------------------------------------------------------------------------------------
 
   const getPreview = (obj) => {
     console.log("getPreview");
@@ -678,8 +685,7 @@ const appController = ((textC, uiC) => {
 
   }
 
-
-  // ------------------------------------------------------------------------------------------- 🡧
+  // -------------------------------------------------------------------------------------------
 
   const getNew = () => {
     console.log("getNew");
@@ -789,12 +795,11 @@ To see this route visit https://maps.app.goo.gl/55hdYLAKswbuFAP46`;
 
   }
 
-
-  // ------------------------------------------------------------------------------------------- 🡧
+  // -------------------------------------------------------------------------------------------
 
   const getList = () => {
     let drifts = textC.getData().drifts;
-    console.log("getHome - data.drift 🡧");
+    console.log("getList - data.drift 🡧");
     console.log(drifts);
     
     // HEADER-LEFT
@@ -847,9 +852,9 @@ To see this route visit https://maps.app.goo.gl/55hdYLAKswbuFAP46`;
     
   }
 
-  // ------------------------------------------------------------------------------------------- 🡧
+  // -------------------------------------------------------------------------------------------
 
-  const loaderAnim = () => {
+  const loader = () => {
     window.addEventListener('load', () => {
       document.querySelector('.loader').className += " hidden";
     });
@@ -862,19 +867,18 @@ To see this route visit https://maps.app.goo.gl/55hdYLAKswbuFAP46`;
     });
   }
 
-  // ------------------------------------------------------------------------------------------- 🡧
+  // -------------------------------------------------------------------------------------------
 
   return {
     init: () => {
       console.log("app started..");
-      loaderAnim();
+      loader();
       preventer();
       getSwiper();
       headerHandler();
       menuHandler();
       getList();
     },
-
     getData: () => {
       return data
     }
