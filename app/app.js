@@ -128,7 +128,7 @@ const textController = (() => {
 
         // OTHER
         else {
-          let action = [e[0], 'do', 'something', 'fun'];
+          let action = [e[0], 'turn', 'any', 'direction'];
           dirArr = [...dirArr, action];
         }
 
@@ -143,21 +143,25 @@ const textController = (() => {
     const getQuestions = (arr) => {
       const allQuestions = [
         'What do you see on the left side?',
-        'What do you see at your right side?',
-        'Is the left side a public space or private!?',
-        'Is the right side a public space or private!?',
-        'Is there surveillance cameras around?',
-        'Is there a shop around? Is the shop old or new?',
-        'Do you think that this area a gentrified one?',
-        'Is there a coffee shop around?',
-        'What color is the facade? Or no buildings!?',
-        'What is the density of cars around?',
-        'Is this area old or new?',
-        'What can be history of the building?',
-        'Is there more cars or bikes around?',
-        'Is it dirty around?',
-        'What color is the building?',
-        'Is this area more social or the opposite?'
+        'What do you see on the right side?',
+        'Is there a public space on the left side?',
+        'Is there a public space on the right side?',
+        'Is there any surveillance cameras around?',
+        'Is there any shops on the left side?',
+        'Is there any shops on the right side?',
+        'Is there any schools around?',
+        'Is there any hospitals around?',
+        'Do you think that this area is gentrified?',
+        'How old is the building/space on the left?',
+        'How old is the building/space on the right?',
+        'What color/type is the facade on the left?',
+        'What color/type is the facade on the right?',
+        'What is the density of the car traffic around?',
+        'Is biking a big deal around?',
+        'Is this area/neighborhood old or new?',
+        'What can be story behind the building on the left?',
+        'What can be story behind the building on the right?',
+        'Is it dirty around?'
       ];
 
       const randomItem = (items) => {
@@ -514,6 +518,8 @@ const appController = ((textC, uiC) => {
     DOM.section.classList.remove(...DOM.section.classList);
     DOM.section.classList.add('comp', 'steps-comp');
     
+    // TO DO
+    //if no "nth" direction, take the last one
     let html = `
       <div class="steps" id=${emptyIndex}>
 
@@ -625,7 +631,9 @@ const appController = ((textC, uiC) => {
       <div class="preview">
 
         <div class="preview-item">
-          <p>Forget about ${obj.dest}</p>
+          <p>
+            Forget about ${obj.dest} >> ${obj.records.filter(e => e !== undefined).length}/${obj.records.length}
+          </p>
         </div>
 
         <ul class="preview-item list">

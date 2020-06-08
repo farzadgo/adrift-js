@@ -150,7 +150,7 @@ input, textarea, button, select, a {
   font-family: "Material Icons";
   line-height: 0.1em;
   font-size: 20px;
-  color: var(--theme-color);
+  color: var(--theme-color-alt);
 }
 .content-text.external:nth-child(4)::after {
   content: "save_alt";
@@ -237,7 +237,7 @@ input, textarea, button, select, a {
 }
 .header-item.inverted:hover {
   color: white;
-  background-color: crimson;
+  background-color: var(--theme-color-alt);
 }
 .header-left.no-hover {
   pointer-events: none;
@@ -253,7 +253,7 @@ input, textarea, button, select, a {
   font-size: var(--font-size-med);
 }
 .comp > * p {
-  line-height: 1.8em;
+  line-height: 1.6em;
 }
 .button {
   position: relative;
@@ -271,7 +271,6 @@ input, textarea, button, select, a {
 }
 .button:hover {
   border: 0;
-  /* color: white; */
   background-color: var(--theme-color);
 }
 .button[disabled] {
@@ -302,7 +301,7 @@ input, textarea, button, select, a {
   cursor: pointer;
 }
 .item-title {
-  color: var(--theme-color);
+  color: var(--theme-color-alt);
 }
 .add-button {
   position: fixed;
@@ -373,13 +372,13 @@ input, textarea, button, select, a {
   float: left;
 }
 .preview-item:nth-child(2) {
-  color: var(--theme-color);
+  color: var(--theme-color-alt);
   padding-right: 5px;
 }
 .preview-item:nth-child(4) {
   float: right;
   width: 8%;
-  text-align: right;
+  text-align: center;
 }
 .preview-list-item {
   line-height: 1em;
@@ -391,7 +390,7 @@ input, textarea, button, select, a {
 .preview-list-item i {
   display: block;
   position: relative;
-  top: -0.4em;
+  top: -0.3em;
   font-size: 24px;
 }
 .start-button {
@@ -404,11 +403,11 @@ input, textarea, button, select, a {
 }
 .delete-button:hover {
   color: white;
-  background-color: crimson;
+  background-color: var(--theme-color-alt);
 }
 /* ---------------------------------- */
 .step-item {
-  margin-bottom: calc(var(--padding-one) * 1.4);
+  margin-bottom: calc(var(--padding-one) * 1.2);
 }
 .step-item:first-child p {
   font-size: var(--font-size-big);
@@ -420,10 +419,6 @@ input, textarea, button, select, a {
 .record-button, .stop-button {
   width: var(--btn-height);
   border-radius: calc(var(--btn-height) * 0.5);
-}
-.record-button:hover, .stop-button:hover {
-  background: crimson;
-  color: white;
 }
 .audio-player {
   display: none;
@@ -455,6 +450,7 @@ input, textarea, button, select, a {
     --font-size-med: 1.3rem;
     --font-size-sml: 1.1rem;
     --theme-color: gold;
+    --theme-color-alt: crimson;
   }
   .material-icons.md-size { font-size: 36px; }
   ::-webkit-scrollbar { width: 6px; }
@@ -476,6 +472,7 @@ input, textarea, button, select, a {
     --font-size-med: 1.0rem;
     --font-size-sml: 0.85rem;
     --theme-color: gold;
+    --theme-color-alt: crimson;
   }
   .material-icons.md-size { font-size: 24px; }
   .container {
@@ -497,4 +494,5 @@ input, textarea, button, select, a {
   .paste-button { bottom: calc(var(--btn-height) + var(--padding-one) * 2 + 60px); }
   .menu-title span::before { font-size: 20px; }
   .content-text.external::after { font-size: 16px; }
+  .preview-item:nth-child(4) { text-align: right; }
 }
