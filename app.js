@@ -376,51 +376,51 @@ const appController = ((textC, uiC) => {
   const getSwiper = () => {
 
     swiperHtml = `
-      <button class="swiper-close"> <i class="material-icons md-size">close</i> </button>
+      <button class="swiper-close"> <i class="material-icons md-size">arrow_back</i> </button>
       <div class="swiper-wrapper">
         <div class="swiper-slide">
           <img data-src="assets/screenshots/adrift_inst_1.jpg" class="swiper-lazy">
           <div class="swiper-lazy-preloader"></div>
           <p>
             In Maps you can long press any point to pin the location.
-            Look for finding out about the related walking <u>directions</u>.
+            Look for finding out about the related walking <b>directions</b>.
           </p>
         </div>
         <div class="swiper-slide">
           <img data-src="assets/screenshots/adrift_inst_2.jpg" class="swiper-lazy">
           <div class="swiper-lazy-preloader"></div>
           <p>
-            You can also <u>search</u> for a location and find its <u>walking</u> directions.<br>
+            You can also <b>search</b> for a location and find its <b>walking</b> directions.<br>
             Tap on ⋮ to see the sharing options.
           </p>
         </div>
         <div class="swiper-slide">
           <img data-src="assets/screenshots/adrift_inst_3.jpg" class="swiper-lazy">
           <div class="swiper-lazy-preloader"></div>
-          <p>Tap on <u>Share directions</u> to access the directions text.</p>
+          <p>Tap on <b>Share directions</b> to access the directions text.</p>
         </div>
         <div class="swiper-slide">
           <img data-src="assets/screenshots/adrift_inst_4.jpg" class="swiper-lazy">
           <div class="swiper-lazy-preloader"></div>
-          <p>Among the offered apps and options tap on <u>Copy to clipboar</u>.</p>
+          <p>Among the offered apps and options tap on <b>Copy to clipboar</b>.</p>
         </div>
         <div class="swiper-slide">
           <img data-src="assets/screenshots/adrift_inst_5.jpg" class="swiper-lazy">
           <div class="swiper-lazy-preloader"></div>
-          <p>Open <u>adrift.digital</u> in your browser and tap on ＋ to initiate a drift.</p>
+          <p>Open <b>adrift.digital</b> in your browser and tap on ＋ to initiate a drift.</p>
         </div>
         <div class="swiper-slide">
           <img data-src="assets/screenshots/adrift_inst_6.jpg" class="swiper-lazy">
           <div class="swiper-lazy-preloader"></div>
           <p>
-            <u>Paste</u> the copied directions (or tap on the paste button to the bottom right).<br>
-            If you haven't done the previous steps, you can paste a <u>sample</u> directions text by tapping on the button to the bottom left.
+            <b>Paste</b> the copied directions (or tap on the paste button to the bottom right).<br>
+            If you haven't done the previous steps, you can paste a <b>sample</b> directions text by tapping on the button to the bottom left.
           </p>
         </div>
         <div class="swiper-slide">
           <img data-src="assets/screenshots/adrift_inst_7.jpg" class="swiper-lazy">
           <div class="swiper-lazy-preloader"></div>
-          <p> After pasting the directions text, tap on the <u>Get Lost</u>.</p>
+          <p> After pasting the directions text, tap on the <b>Get Lost</b>.</p>
         </div>
         <div class="swiper-slide">
           <img data-src="assets/screenshots/adrift_inst_8.jpg" class="swiper-lazy">
@@ -430,7 +430,7 @@ const appController = ((textC, uiC) => {
         <div class="swiper-slide">
           <img data-src="assets/screenshots/adrift_inst_9.jpg" class="swiper-lazy">
           <div class="swiper-lazy-preloader"></div>
-          <p>After previewing the new directions tap on the <u>Start Drift</u> to start drifting in the city.</p>
+          <p>After previewing the new directions tap on the <b>Start Drift</b> to start drifting in the city.</p>
         </div>
         <div class="swiper-slide">
           <img data-src="assets/screenshots/adrift_inst_10.jpg" class="swiper-lazy">
@@ -438,19 +438,19 @@ const appController = ((textC, uiC) => {
           <p>
             Follow the directions, answer the questions at each step in form of conversation with your
             friends concerning the surrounding. Have fun and follow your intuitions.
-            Record your conversations by tapping on the <u>Record button</u>.
+            Record your conversations by tapping on the <b>Record button</b>.
           </p>
         </div>
         <div class="swiper-slide">
           <img data-src="assets/screenshots/adrift_inst_11.jpg" class="swiper-lazy">
           <div class="swiper-lazy-preloader"></div>
-          <p>Stop the recording session by tapping on the <u>Stop button</u>.</p>
+          <p>Stop the recording session by tapping on the <b>Stop button</b>.</p>
         </div>
         <div class="swiper-slide">
           <img data-src="assets/screenshots/adrift_inst_12.jpg" class="swiper-lazy">
           <div class="swiper-lazy-preloader"></div>
           <p>
-            Before tapping the <u>Next button</u> in order to proceed, you can download your recording by taping on the download button.
+            Before tapping the <b>Next button</b> in order to proceed, you can download your recording by taping on the download button.
             This is helpful if you want to perform another recording, as the cache keeps only the latest recording.
           </p>
         </div>
@@ -463,7 +463,7 @@ const appController = ((textC, uiC) => {
           <img data-src="assets/screenshots/adrift_inst_14.jpg" class="swiper-lazy">
           <div class="swiper-lazy-preloader"></div>
           <p>
-            Tap on <u>Finish</u> button at the final step.
+            Tap on <b>Finish</b> button at the final step.
             The directions and recording stuff are done, yet continue to your drift, discovery and imagination.
           </p>
         </div>

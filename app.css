@@ -130,27 +130,26 @@ input, textarea, button, select, a {
 }
 .content-text {
   display: block;
-  margin-top: calc(var(--padding-one) * 1.4);
+  margin-top: calc(var(--padding-one) * 1.2);
   line-height: 1.6em;
   font-weight: 400;
 }
 .content-text.quote {
   font-size: var(--font-size-sml);
-  padding: 10px 10px 10px 15px;
-  border-left: 5px solid var(--theme-color);
-  background-color: #202020;
+  padding: 15px var(--padding-one);
+  background-color: #1a1a1a;
 }
 .content-text.quote i {
   line-height: 0.1em;
   font-size: 16px;
-  color: #9c9c9c;
+  color: var(--theme-color);
 }
 .content-text.external::after {
   content: "launch";
   font-family: "Material Icons";
   line-height: 0.1em;
   font-size: 20px;
-  color: var(--theme-color-alt);
+  color: #9c9c9c;
 }
 .content-text.external:nth-child(4)::after {
   content: "save_alt";
@@ -195,7 +194,7 @@ input, textarea, button, select, a {
 .swiper-close {
   position: absolute;
   top: 0;
-  right: 0;
+  left: 0;
   z-index: 4;
   cursor: pointer;
   height: var(--header-height);
