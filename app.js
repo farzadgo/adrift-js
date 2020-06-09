@@ -163,14 +163,47 @@ const textController = (() => {
         'What can be story behind the building on the right?',
         'Is it dirty around?'
       ];
-
       const randomItem = (items) => {
         let item = items[Math.floor(Math.random() * items.length)];
         return item
       };
 
-      const qsArr = arr.map(() => randomItem(allQuestions));
-      return qsArr
+      
+      let qArr = [];
+      let index = allQuestions.length;
+      while (index > 0) {
+        let newItem = randomItem(allQuestions);
+        if (qArr.indexOf(newItem) === -1) {
+          qArr.push(newItem);
+          index -= 1
+        }
+      }
+      
+      let qArr_ = [];
+      let dif = arr.length - qArr.length;
+      if (dif > 0) {
+        if (dif > qArr.length) {
+          while (dif > qArr.length) {
+            qArr_ = [...qArr_, ...qArr];
+            dif = arr.length - qArr_.length;
+          };
+          qArr_ = [...qArr_, ...qArr.slice(0, dif)];
+          console.log(qArr_);
+          return qArr_
+        } else {
+          qArr = [...qArr, ...qArr.slice(0, dif)];
+          console.log(qArr);
+          return qArr
+        }
+      } else if (dif < 0) {
+        console.log('case 2');
+        qArr = qArr.slice(0, qArr.length + dif)
+        console.log('case 2', qArr);
+        return qArr
+      } else {
+        return qArr
+      }
+
     }
 
     const allLines = inp.toLowerCase().split('\n').filter(Boolean);
@@ -297,7 +330,7 @@ const appController = ((textC, uiC) => {
 
   const headerHandler = () => {
 
-    DOM.headerRight.innerHTML = '<i class="material-icons md-size"> menu </i>';
+    DOM.headerRight.innerHTML = '<i class="material-icons md-lg"> menu </i>';
 
     DOM.headerRight.addEventListener('click', (e) => {
       DOM.menu.classList.toggle('is-visible');
@@ -315,12 +348,12 @@ const appController = ((textC, uiC) => {
 
     const headerToggler = (e) => {
       if (DOM.menu.classList.contains('is-visible')) {
-        e.innerHTML = '<i class="material-icons md-size"> close </i>';
+        e.innerHTML = '<i class="material-icons md-lg"> close </i>';
         e.classList.add('inverted');
         DOM.headerLeft.style.display = "none";
         DOM.header.style.backgroundColor = "black";
       } else {
-        e.innerHTML = '<i class="material-icons md-size"> menu </i>';
+        e.innerHTML = '<i class="material-icons md-lg"> menu </i>';
         e.classList.remove('inverted');
         DOM.header.style.backgroundColor = "white";
         DOM.headerLeft.style.display = "block";
@@ -376,7 +409,7 @@ const appController = ((textC, uiC) => {
   const getSwiper = () => {
 
     swiperHtml = `
-      <button class="swiper-close"> <i class="material-icons md-size">arrow_back</i> </button>
+      <button class="swiper-close"> <i class="material-icons md-lg"> arrow_back </i> </button>
       <div class="swiper-wrapper">
         <div class="swiper-slide">
           <img data-src="assets/screenshots/adrift_inst_1.jpg" class="swiper-lazy">
@@ -391,7 +424,7 @@ const appController = ((textC, uiC) => {
           <div class="swiper-lazy-preloader"></div>
           <p>
             You can also <b>search</b> for a location and find its <b>walking</b> directions.<br>
-            Tap on ⋮ to see the sharing options.
+            Tap on <b>⋮</b> to see the sharing options.
           </p>
         </div>
         <div class="swiper-slide">
@@ -512,7 +545,7 @@ const appController = ((textC, uiC) => {
 
     // HEADER-LEFT
     DOM.headerLeft.setAttribute("name", "steps");
-    DOM.headerLeft.innerHTML = '<i class="material-icons md-size">arrow_back</i>';
+    DOM.headerLeft.innerHTML = '<i class="material-icons md-lg"> arrow_back </i>';
 
     // STEPS-COMP
     DOM.section.classList.remove(...DOM.section.classList);
@@ -529,8 +562,8 @@ const appController = ((textC, uiC) => {
         </div>
 
         <div class="step-item">
-          <button class="button record-button" disabled> <i class="material-icons md-size">fiber_manual_record</i> </button>
-          <button class="button stop-button" disabled> <i class="material-icons md-size">stop</i> </button>
+          <button class="button record-button" disabled> <i class="material-icons md-lg"> fiber_manual_record </i> </button>
+          <button class="button stop-button" disabled> <i class="material-icons md-lg"> stop </i> </button>
         </div>
 
         <div class="step-item">
@@ -539,7 +572,7 @@ const appController = ((textC, uiC) => {
 
         <div class="step-item downloader">
           <p> If you want to record another voice regarding current step, download just recorded one below before preceeding </p>
-          <a class="download-link"> <i class="material-icons md-size"> save_alt </i> </a>
+          <a class="download-link"> <i class="material-icons-sharp"> save_alt </i> </a>
         </div>
 
       </div>
@@ -575,7 +608,7 @@ const appController = ((textC, uiC) => {
     }
 
     const onRecordingReady = (e) => {  
-      console.log('onRecordReady function');
+      console.log('onRecordReady');
       if (e.data.size > 0) {
         obj.records[emptyIndex] = e.data;
       }
@@ -619,7 +652,7 @@ const appController = ((textC, uiC) => {
     // HEADER-LEFT
     DOM.headerLeft.setAttribute("name", "preview");
     DOM.headerLeft.setAttribute("id", obj.id);
-    DOM.headerLeft.innerHTML = '<i class="material-icons md-size">first_page</i>';
+    DOM.headerLeft.innerHTML = '<i class="material-icons md-lg"> first_page </i>';
     DOM.headerLeft.classList.remove('no-hover');
 
     // PREVIEW-COMP
@@ -651,14 +684,14 @@ const appController = ((textC, uiC) => {
         <ul class="preview-item list">
           ${Array(obj.records.length).fill().map((item, i) => `
             ${obj.records[i] == null
-              ? `<li class="preview-list-item empty"> <i class="material-icons"> check_box_outline_blank </i> </li>`
-              : `<li class="preview-list-item"> <a class="download-link"> <i class="material-icons"> save_alt </i> </a> </li>`
+              ? `<li class="preview-list-item"> <span class="box empty"><i class="material-icons-sharp"> check_box_outline_blank </i> </span> </li>`
+              : `<li class="preview-list-item"> <a class="box download-link"> <i class="material-icons-sharp"> save_alt </i> </a> </li>`
             }
           `).join('')}
         </ul>
 
       </div>
-      <button class="button delete-button"> <i class="material-icons md-size">delete</i> </button>
+      <button class="button delete-button"> <i class="material-icons md-lg"> delete </i> </button>
       <button class="button txt start-button" disabled>
         ${(() => {
           if (obj.records.every(e => e == undefined)) {
@@ -700,7 +733,7 @@ const appController = ((textC, uiC) => {
 
     // HEADER-LEFT
     DOM.headerLeft.setAttribute("name", "new");
-    DOM.headerLeft.innerHTML = '<i class="material-icons md-size">arrow_back</i>';
+    DOM.headerLeft.innerHTML = '<i class="material-icons md-lg"> arrow_back </i>';
     DOM.headerLeft.classList.remove('no-hover');
 
     // NEW-COMP
@@ -708,9 +741,9 @@ const appController = ((textC, uiC) => {
     DOM.section.classList.add('comp', 'new-comp');
 
     let html = `
-      <textarea class="textarea" type="text" value="none" placeholder="Paste the directions text here or tap the bottom right &#x25E2;\n\nTo paste a sample directions text tap the bottom left &#x25E3;"></textarea>
-      <button class="paste-button sample"> <i class="material-icons md-size">format_list_numbered</i> </button>
-      <button class="paste-button clip"> <i class="material-icons md-size">content_paste</i> </button>
+      <textarea class="textarea" type="text" value="none" placeholder="Paste the directions text here or tap on the bottom right &#x25E2;\n\nTo paste a sample directions text tap on the bottom left &#x25E3;"></textarea>
+      <button class="paste-button sample"> <i class="material-icons md-lg"> format_list_numbered </i> </button>
+      <button class="paste-button clip"> <i class="material-icons md-lg"> content_paste </i> </button>
       <button class="button txt lost-button" disabled> Get Lost </button>
     `;
     DOM.section.innerHTML = html;
@@ -836,7 +869,7 @@ To see this route visit https://maps.app.goo.gl/55hdYLAKswbuFAP46`;
         </div>
       `).join('')}
       <button class="button add-button">
-        <i class="material-icons md-size"> add </i>
+        <i class="material-icons md-lg"> add </i>
       </button>
     `;
     DOM.section.innerHTML = html;

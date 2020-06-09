@@ -116,10 +116,11 @@ input, textarea, button, select, a {
 }
 .menu-title span::before {
   font-family: "Material Icons";
-  font-size: 30px;
+  font-size: 36px;
   font-weight: 400;
   position: relative;
-  top: 0.2em;
+  top: 0.24em;
+  padding-right: 10px;
 }
 .menu-title span[data-before]::before {
   content: attr(data-before) " ";
@@ -136,13 +137,9 @@ input, textarea, button, select, a {
 }
 .content-text.quote {
   font-size: var(--font-size-sml);
-  padding: 15px var(--padding-one);
+  padding: 10px 15px;
   background-color: #1a1a1a;
-}
-.content-text.quote i {
-  line-height: 0.1em;
-  font-size: 16px;
-  color: var(--theme-color);
+  border-left: 5px solid #4e4e4e;
 }
 .content-text.external::after {
   content: "launch";
@@ -236,7 +233,7 @@ input, textarea, button, select, a {
 }
 .header-item.inverted:hover {
   color: white;
-  background-color: var(--theme-color-alt);
+  background-color: var(--theme-color);
 }
 .header-left.no-hover {
   pointer-events: none;
@@ -270,7 +267,8 @@ input, textarea, button, select, a {
 }
 .button:hover {
   border: 0;
-  background-color: var(--theme-color);
+  color: white;
+  background-color: black;
 }
 .button[disabled] {
   pointer-events: none;
@@ -300,7 +298,7 @@ input, textarea, button, select, a {
   cursor: pointer;
 }
 .item-title {
-  color: var(--theme-color-alt);
+  color: var(--theme-color);
 }
 .add-button {
   position: fixed;
@@ -371,7 +369,7 @@ input, textarea, button, select, a {
   float: left;
 }
 .preview-item:nth-child(2) {
-  color: var(--theme-color-alt);
+  color: var(--theme-color);
   padding-right: 5px;
 }
 .preview-item:nth-child(4) {
@@ -383,14 +381,13 @@ input, textarea, button, select, a {
   line-height: 1em;
   height: 42px;
 }
-.preview-list-item.empty {
-  color: #9c9c9c;
-}
-.preview-list-item i {
+.preview-list-item .box {
   display: block;
   position: relative;
-  top: -0.3em;
-  font-size: 24px;
+  top: -0.5rem;
+}
+.preview-list-item .empty {
+  color: #BEBEBE;
 }
 .start-button {
   width: calc(100% -  var(--btn-height) - var(--padding-one));
@@ -401,8 +398,7 @@ input, textarea, button, select, a {
   float: left;
 }
 .delete-button:hover {
-  color: white;
-  background-color: var(--theme-color-alt);
+  background-color: var(--theme-color);
 }
 /* ---------------------------------- */
 .step-item {
@@ -419,6 +415,9 @@ input, textarea, button, select, a {
   width: var(--btn-height);
   border-radius: calc(var(--btn-height) * 0.5);
 }
+.record-button:hover, .stop-button:hover {
+  background: var(--theme-color);
+}
 .audio-player {
   display: none;
   width: 100%;
@@ -429,16 +428,21 @@ input, textarea, button, select, a {
   font-size: var(--font-size-sml);
   font-weight: 400;
 }
-.downloader .download-link {
+.step-item .download-link {
   display: block;
-  margin-top: 10px;
+  position: relative;
+  padding-top: 15px;
+  width: 60px;
+  height: 60px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .next-button {
   width: 100%;
 }
 
 
-/* ===================== For Mobile =================== */
+/* ===================== For Desktop =================== */
 @media (min-width: 620px) {
   :root {
     --header-height: 80px;
@@ -448,10 +452,9 @@ input, textarea, button, select, a {
     --font-size-big: 1.6rem;
     --font-size-med: 1.3rem;
     --font-size-sml: 1.1rem;
-    --theme-color: gold;
-    --theme-color-alt: crimson;
+    --theme-color: crimson;
   }
-  .material-icons.md-size { font-size: 36px; }
+  .material-icons.md-lg { font-size: 36px; }
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-thumb {
     background-color: #BEBEBE;
@@ -470,10 +473,9 @@ input, textarea, button, select, a {
     --font-size-big: 1.3rem;
     --font-size-med: 1.0rem;
     --font-size-sml: 0.85rem;
-    --theme-color: gold;
-    --theme-color-alt: crimson;
+    --theme-color: crimson;
   }
-  .material-icons.md-size { font-size: 24px; }
+  .material-icons.md-lg { font-size: 24px; }
   .container {
     position: fixed;
     top: 0;
@@ -486,12 +488,11 @@ input, textarea, button, select, a {
   .comp { height: calc(100vh - var(--header-height) - 60px); }
   .textarea { font-size: 0.7em; }
   .button:hover {
-    border: 0;
     color: #9c9c9c;
     background: #f0f0f0;
   }
   .paste-button { bottom: calc(var(--btn-height) + var(--padding-one) * 2 + 60px); }
-  .menu-title span::before { font-size: 20px; }
+  .menu-title span::before { font-size: 24px; }
   .content-text.external::after { font-size: 16px; }
   .preview-item:nth-child(4) { text-align: right; }
 }
