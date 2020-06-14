@@ -65,7 +65,7 @@ input, textarea, button, select, a {
   transform: scale(0.4) translate(-50%, -50%);
 }
 .loader.hidden {
-  animation: fadeOut 2s;
+  animation: fadeOut 1.5s;
   animation-fill-mode: forwards;
 }
 @keyframes fadeOut {
