@@ -1,6 +1,8 @@
 # adrift
 The public repository for the experimental and artistic research-based web application **adrift**, which is part of my work associated with Digital Media Bremen master program.
 
+## <a href="https://adrift.digital/" target="_blank">adrift.digital</a>
+
 Adrift deconstructs Google Maps direction text* and by doing so it offers a new set of directions based on the original one, thus it enables the performers to get lost in their very own environment. "Getting lost" refers to the perception of the urban fabric in a different way than what we usually experienc in **everyday life**.
 
 During the walk (or run, play, etc.) to nowhere, the performers are being asked a set of questions regarding the surrounding and offered the opportunity to record the answers in the form of conversations between them, hoping to initiate another level of observation and meaning-making through the act of walking and mapping.
