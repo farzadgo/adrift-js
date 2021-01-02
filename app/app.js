@@ -50,11 +50,6 @@ const textController = (() => {
       const arr_ = arr.map(e => [...e]);
       const args_turn = ['turn', 'slight', 'sharp', 'keep'];
 
-      // const mapper = (n, start1, stop1, start2, stop2) => {
-      //   const newval = (n - start1) / (stop1 - start1) * (stop2 - start2) + start2;
-      //   return newval
-      // };
-
       arr_.forEach((e, i) => {
 
         // HEAD
@@ -193,17 +188,17 @@ const textController = (() => {
             dif = arr.length - qArr_.length;
           };
           qArr_ = [...qArr_, ...qArr.slice(0, dif)];
-          console.log(qArr_);
+          // console.log(qArr_);
           return qArr_
         } else {
           qArr = [...qArr, ...qArr.slice(0, dif)];
-          console.log(qArr);
+          // console.log(qArr);
           return qArr
         }
       } else if (dif < 0) {
-        console.log('case 2');
+        // console.log('case 2');
         qArr = qArr.slice(0, qArr.length + dif)
-        console.log('case 2', qArr);
+        // console.log('case 2', qArr);
         return qArr
       } else {
         return qArr
@@ -211,18 +206,23 @@ const textController = (() => {
 
     }
 
+    // DECONSTRUCTING THE DIRECTIONS TEXT
     const allLines = inp.toLowerCase().split('\n').filter(Boolean);
     const allWords = allLines.map(e => e.split(' '));
     const dirWords = allWords.filter(e => e[0] === `${parseInt(e[0])}.`);
-    // console.log(dirWords);
+    console.log('Directions Text:', dirWords);
+
     const destination = getDest(dirWords);
-    // console.log('destination', destination);
+    // console.log('Destination:', destination);
+
     const orgDirs = getOrgDirs(dirWords);
-    // console.log('orgDirs', orgDirs);
+    console.log('Simplifed Directions:', orgDirs.dirArr);
+
     const newDirs = getNewDirs(orgDirs.dirArr);
-    // console.log('newDirs', newDirs);
+    console.log('New Directions:', newDirs.dirArr);
+
     const questions = getQuestions(orgDirs.dirStr);
-    // console.log(questions);
+    // console.log('Questions:', questions);
     
     return {
       destination: destination,
@@ -281,7 +281,8 @@ const textController = (() => {
     },
     getData: () => {
       return data
-    }
+    },
+    alldata: data
   }
 
 })();
