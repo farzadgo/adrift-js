@@ -224,7 +224,7 @@ const textController = (() => {
     // console.log('New Directions:', newDirs.dirArr);
 
     const questions = getQuestions(orgDirs.dirStr);
-    console.log('Questions:', questions);
+    // console.log('Questions:', questions);
     
     return {
       destination: destination,

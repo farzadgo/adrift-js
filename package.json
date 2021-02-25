@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/farzadgo/adrift.git"
+    "url": "git+https://github.com/farzadgo/adrift-js.git"
   },
   "keywords": [],
   "author": "Farzad Golghasemi",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/farzadgo/adrift/issues"
+    "url": "https://github.com/farzadgo/adrift-js/issues"
   },
-  "homepage": "https://farzadgo.github.io/adrift/",
+  "homepage": "https://farzadgo.github.io/adrift-js/",
   "dependencies": {
     "gh-pages": "^2.2.0"
   }
