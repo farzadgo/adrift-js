@@ -139,8 +139,8 @@ const textController = (() => {
       const allQuestions = [
         'What do you see on the left side?',
         'What do you see on the right side?',
-        'Is the any gatherins on the left side?',
-        'Is the any gatherins on the right side?',
+        'Are there any gatherings on the left side?',
+        'Are there any gatherings on the right side?',
         'Are there any surveillance cameras around?',
         'Are there any shops on the left side?',
         'Are there any shops on the right side?',
@@ -158,8 +158,8 @@ const textController = (() => {
         'Listen, where does the sound come from?',
         'What is the temperature of the surface on the left?',
         'What is the temperature of the surface on the right?',
-        'Can you close you’re eyes and follow the way with eyes being closed?',
-        'Could there be a hidden garden around?'        
+        'Can you close your eyes and follow the path keeping them closed?',
+        'Could there be a hidden garden around?'       
       ];
       const randomItem = (items) => {
         let item = items[Math.floor(Math.random() * items.length)];
@@ -208,18 +208,20 @@ const textController = (() => {
 
     // DECONSTRUCTING THE DIRECTIONS TEXT
     const allLines = inp.toLowerCase().split('\n').filter(Boolean);
+    // console.log(allLines);
     const allWords = allLines.map(e => e.split(' '));
+    // console.log(allWords);
     const dirWords = allWords.filter(e => e[0] === `${parseInt(e[0])}.`);
-    console.log('Directions Text:', dirWords);
+    // console.log('Directions Text:', dirWords);
 
     const destination = getDest(dirWords);
     // console.log('Destination:', destination);
 
     const orgDirs = getOrgDirs(dirWords);
-    console.log('Simplifed Directions:', orgDirs.dirArr);
+    // console.log('Google Directions:', orgDirs.dirArr);
 
     const newDirs = getNewDirs(orgDirs.dirArr);
-    console.log('New Directions:', newDirs.dirArr);
+    // console.log('New Directions:', newDirs.dirArr);
 
     const questions = getQuestions(orgDirs.dirStr);
     // console.log('Questions:', questions);
@@ -757,31 +759,29 @@ const appController = ((textC, uiC) => {
     const sampleText = `# SAMPLE DIRECTION TEXT FROM THE MAPS
 
 Shared route
-From (53.1109262,8.8559480) to Starbucks via Parkallee.
+From (53.0630468,8.8037765) to Starbucks via Wilhelm-Kaisen-Brücke.
 
-21 min (6.1 km)
+37 min (2.9 km)
 
-1. Head northeast on Am Biologischen Garten toward Robert-Hooke-Straße
-2. Make a U-turn at Robert-Hooke-Straße
-3. Turn right
-4. Turn left onto Wilhelm-Herbst-Straße
-5. Continue onto Wiener Straße
-6. Turn right onto Universitätsallee
-7. Continue onto Parkallee
-8. At the roundabout, continue straight to stay on Parkallee
-9. Continue onto Rembertistraße
-10. Turn left onto Präsident-Kennedy-Platz
-11. Turn right onto Bürgermeisterin-Mevissen-Weg
-12. Turn right
-13. Take the pedestrian tunnel
-14. Continue straight onto Domshof
-15. Turn right to stay on Domshof
-16. Turn right onto Am Dom
-17. Turn left onto Am Markt
-18. Turn left to stay on Am Markt
-19. Turn left onto Marktstraße
-20. Arrive at location: Starbucks
-To see this route visit https://maps.app.goo.gl/55hdYLAKswbuFAP46`;
+
+1. Head northeast on Gneisenaustraße toward Hardenbergstraße
+2. Turn left onto Buntentorsteinweg
+3. Turn right onto Torn-Pad
+4. Turn left onto Weserdeich
+5. Continue onto Sankt-Pauli-Deich
+6. Turn right onto Wilhelm-Kaisen-Brücke
+7. Turn left toward Balgebrückstraße
+8. Turn right onto Balgebrückstraße
+9. Slight left onto Am Dom
+10. Turn right to stay on Am Dom
+11. Continue straight onto Domshof
+12. Turn left onto Schüsselkorb
+13. Continue onto Herdentorsteinweg
+14. Turn left onto Bahnhofstraße
+15. Turn right toward Bahnhofspl.
+16. Turn left onto Bahnhofspl.
+17. Arrive at location: Starbucks
+To see this route visit https://maps.app.goo.gl/P3VkP7tFYtR9f5cVA`;
 
     // LISTENERS
     const textInput = document.querySelector('.textarea');
