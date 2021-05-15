@@ -1,9 +1,9 @@
 # adrift
 The public repository for the experimental and artistic research-based web application **adrift**, which is part of my work associated with Digital Media Bremen master program.
 
-<b><a href="https://farzadgo.github.io/adrift-js/" target="_blank">v1 link</a></b>
+[v1 link](https://farzadgo.github.io/adrift-js/)
 
-<b><a href="https://adriftapp.netlify.app/" target="_blank">v2 link</a></b>
+[v2 link](https://adriftapp.netlify.app/)
 
 > **Note:** This version of the app **is not functioning properly on iOS**, partly because of the utilization of some modern web APIs which are not supported on every device yet. 
 
