@@ -1,14 +1,14 @@
 {
   "name": "adrift-js",
   "version": "1.0.0",
-  "description": "***\r Adrift is a front-end single-page application written in Vanilla Javascrip. Adrift application is based on theories and methods from Situationist Internation.",
+  "description": "Adrift is a front-end single-page application written in Vanilla Javascrip. Adrift application is based on theories and methods from Situationist Internation.",
   "main": "app.js",
   "scripts": {
     "deploy": "gh-pages -d app"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/farzadgo/adrift-js.git"
+    "url": "https://github.com/farzadgo/adrift-js.git"
   },
   "keywords": [],
   "author": "Farzad Golghasemi",
