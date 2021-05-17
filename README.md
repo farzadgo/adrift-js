@@ -3,7 +3,7 @@ The public repository for the experimental and artistic research-based web appli
 
 [v1 link](https://farzadgo.github.io/adrift-js/)
 
-[v2 link](https://adriftapp.netlify.app/)
+[v2 link](https://adrift.city)
 
 > **Note:** This version of the app **is not functioning properly on iOS**, partly because of the utilization of some modern web APIs which are not supported on every device yet. 
 
